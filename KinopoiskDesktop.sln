@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.10.34916.146
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "KinopoiskDesktop.App", "KinopoiskDesktop.App\KinopoiskDesktop.App.csproj", "{AACAE78D-669D-4990-BDCA-F84170A26C1D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KinopoiskDesktop.Integrations", "KinopoiskDesktop.Integrations\KinopoiskDesktop.Integrations.csproj", "{1EAEC661-9B31-442A-B6D3-AC376FCD4B01}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AACAE78D-669D-4990-BDCA-F84170A26C1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AACAE78D-669D-4990-BDCA-F84170A26C1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AACAE78D-669D-4990-BDCA-F84170A26C1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AACAE78D-669D-4990-BDCA-F84170A26C1D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1EAEC661-9B31-442A-B6D3-AC376FCD4B01}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1EAEC661-9B31-442A-B6D3-AC376FCD4B01}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1EAEC661-9B31-442A-B6D3-AC376FCD4B01}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1EAEC661-9B31-442A-B6D3-AC376FCD4B01}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {5F2D0A6B-31C3-4744-A507-F821799D6522}
+	EndGlobalSection
+EndGlobal
