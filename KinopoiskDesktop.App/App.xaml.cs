@@ -13,6 +13,7 @@ using KinopoiskDesktop.Integrations.KinopoiskUnofficialApi;
 using Microsoft.Extensions.Configuration;
 using KinopoiskDesktop.App.Configurations;
 using Microsoft.EntityFrameworkCore;
+using System.IO;
 
 namespace KinopoiskDesktop.App
 {
@@ -26,11 +27,16 @@ namespace KinopoiskDesktop.App
         public App()
         {
             AppHost = Host.CreateDefaultBuilder()
+                .ConfigureAppConfiguration((context, config) =>
+                {
+                    config.AddJsonFile("appsettings.json", optional: false, reloadOnChange: true);
+                })
                 .ConfigureServices((context, services) =>
                 {
                     var configuration = context.Configuration;
                     var kinopoiskApiSettings = configuration.GetSection("KinopoiskApi").Get<KinopoiskApiConfigurations>();
-                    var connectionString = configuration.GetConnectionString("LocalDatabase");
+                    var path = Path.GetFullPath("KinopoiskDesktopDatabase.db");
+                    var connectionString = @$"Data Source={path}";
 
                     services.AddDbContext<KinopoiskDbContext>(options=>
                     {

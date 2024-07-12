@@ -19,7 +19,7 @@ namespace KinopoiskDesktop.Domain.Models
         public DateTime? LoggedAt { get; set; }
 
 
-        public ICollection<Movie>? LikedMovies { get; set; }
+        public ICollection<AppUserMovie>? AppUserMovies { get; set; }
 
 
     }

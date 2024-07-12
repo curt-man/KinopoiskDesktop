@@ -13,10 +13,26 @@ namespace KinopoiskDesktop.DataAccess
     {
         public KinopoiskDbContext(DbContextOptions<KinopoiskDbContext> options) : base(options)
         {
+            
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            var directory = Directory.GetCurrentDirectory();
+            optionsBuilder.UseSqlite(@$"Data Source={directory}\..\..\..\KinopoiskDesktop.DataAccess\KinopoiskDesktopDatabase.db");
+            base.OnConfiguring(optionsBuilder);
         }
 
         public DbSet<Movie> Movies { get; set; }
         public DbSet<AppUser> Users { get; set; }
+        public DbSet<Genre> Genres { get; set; }
+        public DbSet<Country> Countries { get; set; }
+
+        public DbSet<MovieGenre> MoviesGenres { get; set; }
+        public DbSet<MovieCountry> MoviesCountries { get; set; }
+        public DbSet<AppUserMovie> AppUsersMovies { get; set; }
+
+
 
         
 
