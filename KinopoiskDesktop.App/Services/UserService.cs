@@ -1,4 +1,5 @@
-﻿using System;
+﻿using KinopoiskDesktop.App.Services.IService;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.App.Services
 {
-    internal class UserService
+    internal class UserService : IUserService
     {
     }
 }

@@ -9,15 +9,16 @@ using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.DataAccess
 {
-    public class MovieLibraryContext : DbContext
+    public class KinopoiskDbContext : DbContext
     {
+        public KinopoiskDbContext(DbContextOptions<KinopoiskDbContext> options) : base(options)
+        {
+        }
+
         public DbSet<Movie> Movies { get; set; }
         public DbSet<AppUser> Users { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            optionsBuilder.UseSqlite("Data Source=movielibrary.db");
-        }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

@@ -1,5 +1,4 @@
-﻿using KinopoiskApi;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -18,8 +17,6 @@ namespace KinopoiskDesktop.App
     /// </summary>
     public partial class MainWindow : Window
     {
-        public IKinopoiskClient Api { get; set; }
-
         public MainWindow()
         {
             InitializeComponent();
@@ -31,22 +28,5 @@ namespace KinopoiskDesktop.App
             //Films = new ObservableCollection<Film>();
         }
 
-        public ObservableCollection<Film> Films { get; set; }
-
-        private async void FilmsButton_Click(object sender, RoutedEventArgs e)
-        {
-            //var response = await Api.Films2Async(countries: [1], genres: [1], null, null, null, null, null, null, null, null, null);
-            //var movieListItems = response.Items;
-            //var movieList = movieListItems.Select(x => new Film()
-            //{
-            //    NameOriginal = x.NameOriginal,
-            //    Year = (int)x.Year,
-            //    Genres = x.Genres,
-            //});
-            //foreach (var item in movieList)
-            //{
-            //    Films.Add(item);
-            //}
-        }
     }
 }

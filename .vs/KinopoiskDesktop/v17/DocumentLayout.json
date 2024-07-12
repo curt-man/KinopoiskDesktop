@@ -3,27 +3,91 @@
   "WorkspaceRootPath": "C:\\Projects\\KinopoiskDesktop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{1EAEC661-9B31-442A-B6D3-AC376FCD4B01}|KinopoiskDesktop.Integrations\\KinopoiskDesktop.Integrations.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.integrations\\kinopoiskapi\\kinopoiskclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{1EAEC661-9B31-442A-B6D3-AC376FCD4B01}|KinopoiskDesktop.Integrations\\KinopoiskDesktop.Integrations.csproj|solutionrelative:kinopoiskdesktop.integrations\\kinopoiskapi\\kinopoiskclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1EAEC661-9B31-442A-B6D3-AC376FCD4B01}|KinopoiskDesktop.Integrations\\KinopoiskDesktop.Integrations.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.integrations\\kinopoiskapi\\kinopoiskclient.refitter||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{1EAEC661-9B31-442A-B6D3-AC376FCD4B01}|KinopoiskDesktop.Integrations\\KinopoiskDesktop.Integrations.csproj|solutionrelative:kinopoiskdesktop.integrations\\kinopoiskapi\\kinopoiskclient.refitter||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{1EAEC661-9B31-442A-B6D3-AC376FCD4B01}|KinopoiskDesktop.Integrations\\KinopoiskDesktop.Integrations.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.integrations\\kinopoiskdesktop.integrations.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{1EAEC661-9B31-442A-B6D3-AC376FCD4B01}|KinopoiskDesktop.Integrations\\KinopoiskDesktop.Integrations.csproj|solutionrelative:kinopoiskdesktop.integrations\\kinopoiskdesktop.integrations.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\mainwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\app.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67035AF7-1074-45A4-9ABE-882611EBCA5A}|KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.dataaccess\\kinopoiskdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67035AF7-1074-45A4-9ABE-882611EBCA5A}|KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj|solutionrelative:kinopoiskdesktop.dataaccess\\kinopoiskdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\configurations\\kinopoiskapiconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\configurations\\kinopoiskapiconfigurations.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\extensions\\servicecollectoinextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\extensions\\servicecollectoinextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\helpers\\abstractfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\helpers\\abstractfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\helpers\\iabstractfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\helpers\\iabstractfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\services\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\services\\movieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\services\\iservice\\imovieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\services\\iservice\\imovieservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\akmat\\.nuget\\packages\\microsoft.extensions.apidescription.client\\8.0.7\\build\\Microsoft.Extensions.ApiDescription.Client.targets||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{3C4F45A7-8A47-4C3C-B965-5CC78580C94A}|KinopoiskDesktop.Integrations\\KinopoiskDesktop.Integrations.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.integrations\\kinopoiskdesktop.integrations.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{3C4F45A7-8A47-4C3C-B965-5CC78580C94A}|KinopoiskDesktop.Integrations\\KinopoiskDesktop.Integrations.csproj|solutionrelative:kinopoiskdesktop.integrations\\kinopoiskdesktop.integrations.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{109312C5-3203-477A-9D14-6B46CD55D7FD}|KinopoiskDesktop.Domain\\KinopoiskDesktop.Domain.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.domain\\models\\appusermovie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{109312C5-3203-477A-9D14-6B46CD55D7FD}|KinopoiskDesktop.Domain\\KinopoiskDesktop.Domain.csproj|solutionrelative:kinopoiskdesktop.domain\\models\\appusermovie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{109312C5-3203-477A-9D14-6B46CD55D7FD}|KinopoiskDesktop.Domain\\KinopoiskDesktop.Domain.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.domain\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{109312C5-3203-477A-9D14-6B46CD55D7FD}|KinopoiskDesktop.Domain\\KinopoiskDesktop.Domain.csproj|solutionrelative:kinopoiskdesktop.domain\\models\\appuser.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{109312C5-3203-477A-9D14-6B46CD55D7FD}|KinopoiskDesktop.Domain\\KinopoiskDesktop.Domain.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.domain\\managers\\appusermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{109312C5-3203-477A-9D14-6B46CD55D7FD}|KinopoiskDesktop.Domain\\KinopoiskDesktop.Domain.csproj|solutionrelative:kinopoiskdesktop.domain\\managers\\appusermanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\services\\iservice\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\services\\iservice\\iuserservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\kinopoiskdesktop.app.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\kinopoiskdesktop.app.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.refitter||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.refitter||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     }
   ],
   "DocumentGroupContainers": [
@@ -33,7 +97,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 24,
           "Children": [
             {
               "$type": "Bookmark",
@@ -41,28 +105,14 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "KinopoiskClient.cs",
-              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.cs",
-              "RelativeDocumentMoniker": "KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.cs",
-              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.cs",
-              "RelativeToolTip": "KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAC0AAABRAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-07-10T18:36:58.112Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "KinopoiskClient.refitter",
-              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.refitter",
-              "RelativeDocumentMoniker": "KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.refitter",
-              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.refitter",
-              "RelativeToolTip": "KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.refitter",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAAcAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
-              "WhenOpened": "2024-07-10T18:31:34.258Z",
+              "DocumentIndex": 2,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\App.xaml",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\App.xaml",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\App.xaml",
+              "RelativeToolTip": "KinopoiskDesktop.App\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2024-07-12T17:27:44.667Z",
               "EditorCaption": ""
             },
             {
@@ -75,7 +125,224 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "KinopoiskApiConfigurations.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Configurations\\KinopoiskApiConfigurations.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\Configurations\\KinopoiskApiConfigurations.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Configurations\\KinopoiskApiConfigurations.cs",
+              "RelativeToolTip": "KinopoiskDesktop.App\\Configurations\\KinopoiskApiConfigurations.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAaAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T17:05:11.42Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\appsettings.json",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\appsettings.json",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\appsettings.json",
+              "RelativeToolTip": "KinopoiskDesktop.App\\appsettings.json",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-07-12T13:13:51.213Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "IAbstractFactory.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Helpers\\IAbstractFactory.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\Helpers\\IAbstractFactory.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Helpers\\IAbstractFactory.cs",
+              "RelativeToolTip": "KinopoiskDesktop.App\\Helpers\\IAbstractFactory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAnAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T13:08:09.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "AbstractFactory.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Helpers\\AbstractFactory.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\Helpers\\AbstractFactory.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Helpers\\AbstractFactory.cs",
+              "RelativeToolTip": "KinopoiskDesktop.App\\Helpers\\AbstractFactory.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T13:07:19.451Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ServiceCollectoinExtensions.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Extensions\\ServiceCollectoinExtensions.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\Extensions\\ServiceCollectoinExtensions.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Extensions\\ServiceCollectoinExtensions.cs",
+              "RelativeToolTip": "KinopoiskDesktop.App\\Extensions\\ServiceCollectoinExtensions.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAARAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T13:04:23.453Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\App.xaml.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\App.xaml.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\App.xaml.cs",
+              "RelativeToolTip": "KinopoiskDesktop.App\\App.xaml.cs",
+              "ViewState": "AQIAABMAAAAAAAAAAAAzwCMAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T12:37:57.062Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "AppUserManager.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Managers\\AppUserManager.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Managers\\AppUserManager.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Managers\\AppUserManager.cs",
+              "RelativeToolTip": "KinopoiskDesktop.Domain\\Managers\\AppUserManager.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T12:34:13.013Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Services\\UserService.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\Services\\UserService.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Services\\UserService.cs",
+              "RelativeToolTip": "KinopoiskDesktop.App\\Services\\UserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T12:29:31.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IUserService.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Services\\IService\\IUserService.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\Services\\IService\\IUserService.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Services\\IService\\IUserService.cs",
+              "RelativeToolTip": "KinopoiskDesktop.App\\Services\\IService\\IUserService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T12:29:20.833Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "IMovieService.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Services\\IService\\IMovieService.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\Services\\IService\\IMovieService.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Services\\IService\\IMovieService.cs",
+              "RelativeToolTip": "KinopoiskDesktop.App\\Services\\IService\\IMovieService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAgAAAAVAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T12:27:11.516Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "MovieService.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Services\\MovieService.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\Services\\MovieService.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Services\\MovieService.cs",
+              "RelativeToolTip": "KinopoiskDesktop.App\\Services\\MovieService.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAkAAAAtAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T12:26:25.304Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "KinopoiskDesktop.App",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj",
+              "RelativeToolTip": "KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-07-12T12:24:46.361Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "AppUser.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Models\\AppUser.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Models\\AppUser.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Models\\AppUser.cs",
+              "RelativeToolTip": "KinopoiskDesktop.Domain\\Models\\AppUser.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T12:22:56.179Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "AppUserMovie.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Models\\AppUserMovie.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Models\\AppUserMovie.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Models\\AppUserMovie.cs",
+              "RelativeToolTip": "KinopoiskDesktop.Domain\\Models\\AppUserMovie.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAA1AAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T12:12:05.469Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 3,
+              "Title": "KinopoiskDbContext.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.DataAccess\\KinopoiskDbContext.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.DataAccess\\KinopoiskDbContext.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.DataAccess\\KinopoiskDbContext.cs",
+              "RelativeToolTip": "KinopoiskDesktop.DataAccess\\KinopoiskDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-12T12:09:55.916Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "KinopoiskClient.cs",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.cs",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.cs",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.cs",
+              "RelativeToolTip": "KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.cs",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-07-10T18:36:58.112Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "KinopoiskClient.refitter",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.refitter",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.refitter",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.refitter",
+              "RelativeToolTip": "KinopoiskDesktop.Integrations\\KinopoiskApi\\KinopoiskClient.refitter",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2024-07-10T18:31:34.258Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
               "Title": "KinopoiskDesktop.Integrations.csproj",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskDesktop.Integrations.csproj",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Integrations\\KinopoiskDesktop.Integrations.csproj",
@@ -88,37 +355,38 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 13,
               "Title": "Microsoft.Extensions.ApiDescription.Client.targets",
               "DocumentMoniker": "C:\\Users\\akmat\\.nuget\\packages\\microsoft.extensions.apidescription.client\\8.0.7\\build\\Microsoft.Extensions.ApiDescription.Client.targets",
               "RelativeDocumentMoniker": "..\\..\\Users\\akmat\\.nuget\\packages\\microsoft.extensions.apidescription.client\\8.0.7\\build\\Microsoft.Extensions.ApiDescription.Client.targets",
               "ToolTip": "C:\\Users\\akmat\\.nuget\\packages\\microsoft.extensions.apidescription.client\\8.0.7\\build\\Microsoft.Extensions.ApiDescription.Client.targets",
               "RelativeToolTip": "..\\..\\Users\\akmat\\.nuget\\packages\\microsoft.extensions.apidescription.client\\8.0.7\\build\\Microsoft.Extensions.ApiDescription.Client.targets",
-              "ViewState": "AQIAAC4AAAAAAAAAAAAowEAAAAAEAAAA",
+              "ViewState": "AQIAACMAAAAAAAAAAAAjwEAAAAAEAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003801|",
               "WhenOpened": "2024-07-10T17:55:51.803Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 1,
               "Title": "MainWindow.xaml",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\MainWindow.xaml",
               "RelativeDocumentMoniker": "KinopoiskDesktop.App\\MainWindow.xaml",
               "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\MainWindow.xaml",
               "RelativeToolTip": "KinopoiskDesktop.App\\MainWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2024-07-10T16:29:16.161Z"
+              "WhenOpened": "2024-07-10T16:29:16.161Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.App\\MainWindow.xaml.cs",
               "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\MainWindow.xaml.cs",
               "RelativeToolTip": "KinopoiskDesktop.App\\MainWindow.xaml.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAfAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-10T16:29:13.485Z",
               "EditorCaption": ""

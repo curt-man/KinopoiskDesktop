@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.Domain.Managers
 {
-    internal class AppUserManager
+    public class AppUserManager
     {
+
     }
 
 }
