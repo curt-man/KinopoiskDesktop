@@ -1,6 +1,6 @@
 {
   "openApiPath": "https://kinopoiskapiunofficial.tech/documentation/api/openapi.json",
-  "namespace": "KinopoiskApi",
+  "namespace": "KinopoiskDesktop.Integrations.KinopoiskUnofficialApi",
   "naming": {
     "useOpenApiTitle": true,
     "interfaceName": "IKinopoiskClient"

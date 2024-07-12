@@ -7,9 +7,4 @@
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\KinopoiskDesktop.Integrations\KinopoiskDesktop.Integrations.csproj" />
-  </ItemGroup>
-
 </Project>
