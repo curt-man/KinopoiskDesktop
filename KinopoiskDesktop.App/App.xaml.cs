@@ -14,12 +14,12 @@ using Microsoft.Extensions.Configuration;
 using KinopoiskDesktop.App.Configurations;
 using Microsoft.EntityFrameworkCore;
 using System.IO;
+using KinopoiskDesktop.App.Views;
+using KinopoiskDesktop.App.ViewModels;
+using KinopoiskDesktop.App.Core;
 
 namespace KinopoiskDesktop.App
 {
-    /// <summary>
-    /// Interaction logic for App.xaml
-    /// </summary>
     public partial class App : Application
     {
         public static IHost? AppHost { get; private set; }
@@ -47,7 +47,17 @@ namespace KinopoiskDesktop.App
                         c.DefaultRequestHeaders.Add("X-API-KEY", kinopoiskApiSettings.ApiKey);
                     });
 
-                    services.AddSingleton<MainWindow>();
+                    services.AddSingleton<MainView>();
+                    services.AddSingleton<HomeView>();
+                    services.AddSingleton<UserLibraryView>();
+
+                    services.AddSingleton<MainViewModel>();
+                    services.AddSingleton<HomeViewModel>();
+                    services.AddSingleton<UserLibraryViewModel>();
+
+                    services.AddSingleton<Func<System.Type, ViewModel>>(serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));
+
+                    services.AddSingleton<INavigationService, NavigationService>();
                 })
                 .Build();
         }
@@ -55,7 +65,7 @@ namespace KinopoiskDesktop.App
         protected override async void OnStartup(StartupEventArgs e)
         {
             await AppHost.StartAsync();
-            var mainWindow = AppHost.Services.GetRequiredService<MainWindow>();
+            var mainWindow = AppHost.Services.GetRequiredService<MainView>();
             mainWindow.Show();
         }
         
