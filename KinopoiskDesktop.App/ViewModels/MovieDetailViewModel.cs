@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.App.ViewModels
 {
-    public class MovieDetailViewModel : ViewModel
+    public class MovieDetailViewModel : BaseViewModel
     {
     }
 }

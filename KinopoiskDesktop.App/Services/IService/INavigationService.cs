@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.App.Services.IService
 {
-    public interface INavigationService
+    public interface INavigationService 
     {
-        ViewModel CurrentView { get; }
-        void NavigateTo<T>() where T : ViewModel;
+        BaseViewModel CurrentView { get; }
+        void NavigateTo<T>() where T : BaseViewModel;
+        void NavigateTo<T>(object parameter) where T : BaseViewModel;
+        void NavigateTo(BaseViewModel viewModel);
     }
 }

@@ -17,22 +17,28 @@ using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace KinopoiskDesktop.App.ViewModels
 {
-    public class HomeViewModel : ViewModel
+    public class HomeViewModel : BaseViewModel
     {
         private readonly IMovieService _movieService;
         private readonly INavigationService _navigationService;
         public ObservableCollection<Movie> Movies { get; set; }
         public ICommand MovieSelectedCommand { get; }
 
-        public HomeViewModel(IMovieService movieService, INavigationService navigationService)
+        public HomeViewModel()
+        {
+            Movies = new ObservableCollection<Movie>();
+
+            PopulateDesignViewModel();
+        }
+
+        public HomeViewModel(IMovieService movieService, INavigationService navigationService) : this()
         {
             _movieService = movieService;
             _navigationService = navigationService;
-            Movies = new ObservableCollection<Movie>();
-
-            MovieSelectedCommand = new RelayCommand((movie)=>_navigationService.NavigateTo<MovieDetailViewModel>(movi), _=>true);
+            MovieSelectedCommand = new RelayCommand((movie)=>_navigationService.NavigateTo<MovieDetailViewModel>(movie), _=>true);
 
             LoadMovies();
+
         }
 
         private async void LoadMovies()

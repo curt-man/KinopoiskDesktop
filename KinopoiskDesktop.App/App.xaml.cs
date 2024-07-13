@@ -55,8 +55,9 @@ namespace KinopoiskDesktop.App
                     services.AddSingleton<HomeViewModel>();
                     services.AddSingleton<UserLibraryViewModel>();
 
-                    services.AddSingleton<Func<System.Type, ViewModel>>(serviceProvider => viewModelType => (ViewModel)serviceProvider.GetRequiredService(viewModelType));
+                    services.AddSingleton<Func<System.Type, BaseViewModel>>(serviceProvider => viewModelType => (BaseViewModel)serviceProvider.GetRequiredService(viewModelType));
 
+                    services.AddSingleton<IViewModelFactory, ViewModelFactory>();
                     services.AddSingleton<INavigationService, NavigationService>();
                 })
                 .Build();

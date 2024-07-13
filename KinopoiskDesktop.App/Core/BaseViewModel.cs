@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.App.Core
 {
-    public abstract class ViewModel : ObservableObject
+    public abstract class BaseViewModel : ObservableObject
     {
 
     }

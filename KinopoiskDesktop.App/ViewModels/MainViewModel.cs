@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.App.ViewModels
 {
-    public class MainViewModel : ViewModel
+    public class MainViewModel : BaseViewModel
     {
 		private INavigationService _navigationService;
 
@@ -28,7 +28,7 @@ namespace KinopoiskDesktop.App.ViewModels
         {
             NavigationService = navigationService;
 			NavigateToHomeCommand = new RelayCommand((_) => NavigationService.NavigateTo<HomeViewModel>(), (_) => true);
-			NavigateToUserLibraryCommand = new RelayCommand((_) => NavigationService.NavigateTo<UserLibraryViewModel>(), (_) => true);
+			NavigateToUserLibraryCommand = new RelayCommand(x => NavigationService.NavigateTo<UserLibraryViewModel>(), (_) => true);
         }
 
 		public RelayCommand NavigateToHomeCommand { get; set; }
