@@ -23,4 +23,8 @@
     <ProjectReference Include="..\KinopoiskDesktop.Domain\KinopoiskDesktop.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Database\" />
+  </ItemGroup>
+
 </Project>

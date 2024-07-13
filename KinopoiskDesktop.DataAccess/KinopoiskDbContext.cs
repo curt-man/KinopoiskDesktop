@@ -16,13 +16,6 @@ namespace KinopoiskDesktop.DataAccess
             
         }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            var directory = Directory.GetCurrentDirectory();
-            optionsBuilder.UseSqlite(@$"Data Source={directory}\..\..\..\KinopoiskDesktop.DataAccess\KinopoiskDesktopDatabase.db");
-            base.OnConfiguring(optionsBuilder);
-        }
-
         public DbSet<Movie> Movies { get; set; }
         public DbSet<AppUser> Users { get; set; }
         public DbSet<Genre> Genres { get; set; }

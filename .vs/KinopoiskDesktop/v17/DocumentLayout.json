@@ -3,20 +3,24 @@
   "WorkspaceRootPath": "C:\\Projects\\KinopoiskDesktop\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{67035AF7-1074-45A4-9ABE-882611EBCA5A}|KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.dataaccess\\kinopoiskdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{67035AF7-1074-45A4-9ABE-882611EBCA5A}|KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj|solutionrelative:kinopoiskdesktop.dataaccess\\kinopoiskdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\extensions\\servicecollectoinextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\extensions\\servicecollectoinextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{67035AF7-1074-45A4-9ABE-882611EBCA5A}|KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.dataaccess\\kinopoiskdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{67035AF7-1074-45A4-9ABE-882611EBCA5A}|KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj|solutionrelative:kinopoiskdesktop.dataaccess\\kinopoiskdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{67035AF7-1074-45A4-9ABE-882611EBCA5A}|KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.dataaccess\\kinopoiskdesktop.dataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{67035AF7-1074-45A4-9ABE-882611EBCA5A}|KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj|solutionrelative:kinopoiskdesktop.dataaccess\\kinopoiskdesktop.dataaccess.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\mainwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -73,10 +77,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{109312C5-3203-477A-9D14-6B46CD55D7FD}|KinopoiskDesktop.Domain\\KinopoiskDesktop.Domain.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.domain\\models\\moviecountry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{109312C5-3203-477A-9D14-6B46CD55D7FD}|KinopoiskDesktop.Domain\\KinopoiskDesktop.Domain.csproj|solutionrelative:kinopoiskdesktop.domain\\models\\moviecountry.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.app\\extensions\\servicecollectoinextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{AACAE78D-669D-4990-BDCA-F84170A26C1D}|KinopoiskDesktop.App\\KinopoiskDesktop.App.csproj|solutionrelative:kinopoiskdesktop.app\\extensions\\servicecollectoinextensions.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{109312C5-3203-477A-9D14-6B46CD55D7FD}|KinopoiskDesktop.Domain\\KinopoiskDesktop.Domain.csproj|c:\\projects\\kinopoiskdesktop\\kinopoiskdesktop.domain\\models\\appusermovie.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -141,24 +141,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 29,
+          "SelectedChildIndex": 20,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{0ad07096-bba9-4900-a651-0598d26f6d24}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "KinopoiskDesktop.DataAccess",
-              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj",
-              "RelativeDocumentMoniker": "KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj",
-              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj",
-              "RelativeToolTip": "KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-07-12T18:46:34.931Z",
-              "EditorCaption": ""
             },
             {
               "$type": "Bookmark",
@@ -170,7 +157,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 3,
+              "Title": "KinopoiskDesktop.DataAccess",
+              "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj",
+              "RelativeDocumentMoniker": "KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj",
+              "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj",
+              "RelativeToolTip": "KinopoiskDesktop.DataAccess\\KinopoiskDesktop.DataAccess.csproj",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAB4AAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2024-07-12T18:46:34.931Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
               "Title": "FilmTypeEnum.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Enums\\FilmTypeEnum.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Enums\\FilmTypeEnum.cs",
@@ -183,7 +183,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "KinopoiskDesktop.Domain",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\KinopoiskDesktop.Domain.csproj",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\KinopoiskDesktop.Domain.csproj",
@@ -196,7 +196,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "FilmProductionStatusEnum.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Enums\\FilmProductionStatusEnum.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Enums\\FilmProductionStatusEnum.cs",
@@ -209,7 +209,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "MovieCountry.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Models\\MovieCountry.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Models\\MovieCountry.cs",
@@ -222,7 +222,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "MovieGenre.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Models\\MovieGenre.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Models\\MovieGenre.cs",
@@ -235,7 +235,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "Country.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Models\\Country.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Models\\Country.cs",
@@ -248,7 +248,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "Genre.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Models\\Genre.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Models\\Genre.cs",
@@ -261,7 +261,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "KinopoiskUnofficialClient.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Integrations\\KinopoiskUnofficialApi\\KinopoiskUnofficialClient.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Integrations\\KinopoiskUnofficialApi\\KinopoiskUnofficialClient.cs",
@@ -274,7 +274,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 7,
               "Title": "Movie.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Models\\Movie.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Models\\Movie.cs",
@@ -287,7 +287,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "ISyncableEntity.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Models\\ISyncableEntity.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Models\\ISyncableEntity.cs",
@@ -312,7 +312,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "KinopoiskApiConfigurations.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Configurations\\KinopoiskApiConfigurations.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.App\\Configurations\\KinopoiskApiConfigurations.cs",
@@ -325,7 +325,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 4,
               "Title": "appsettings.json",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\appsettings.json",
               "RelativeDocumentMoniker": "KinopoiskDesktop.App\\appsettings.json",
@@ -364,33 +364,33 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 1,
               "Title": "ServiceCollectoinExtensions.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Extensions\\ServiceCollectoinExtensions.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.App\\Extensions\\ServiceCollectoinExtensions.cs",
               "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\Extensions\\ServiceCollectoinExtensions.cs",
               "RelativeToolTip": "KinopoiskDesktop.App\\Extensions\\ServiceCollectoinExtensions.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAJAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAACAAAAAJAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-12T13:04:23.453Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "App.xaml.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\App.xaml.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.App\\App.xaml.cs",
               "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\App.xaml.cs",
               "RelativeToolTip": "KinopoiskDesktop.App\\App.xaml.cs",
-              "ViewState": "AQIAABQAAAAAAAAAAAAzwB4AAAARAAAA",
+              "ViewState": "AQIAABQAAAAAAAAAAAAzwEEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-12T12:37:57.062Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "AppUserManager.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Managers\\AppUserManager.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Managers\\AppUserManager.cs",
@@ -468,7 +468,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "AppUser.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.Domain\\Models\\AppUser.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.Domain\\Models\\AppUser.cs",
@@ -494,13 +494,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "KinopoiskDbContext.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.DataAccess\\KinopoiskDbContext.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.DataAccess\\KinopoiskDbContext.cs",
               "ToolTip": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.DataAccess\\KinopoiskDbContext.cs",
               "RelativeToolTip": "KinopoiskDesktop.DataAccess\\KinopoiskDbContext.cs",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAABQAAAA8AAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAABEAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-07-12T12:09:55.916Z",
               "EditorCaption": ""
@@ -567,7 +567,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "MainWindow.xaml.cs",
               "DocumentMoniker": "C:\\Projects\\KinopoiskDesktop\\KinopoiskDesktop.App\\MainWindow.xaml.cs",
               "RelativeDocumentMoniker": "KinopoiskDesktop.App\\MainWindow.xaml.cs",

@@ -35,17 +35,11 @@ namespace KinopoiskDesktop.App
                 {
                     var configuration = context.Configuration;
                     var kinopoiskApiSettings = configuration.GetSection("KinopoiskApi").Get<KinopoiskApiConfigurations>();
-                    var path = Path.GetFullPath("KinopoiskDesktopDatabase.db");
-                    var connectionString = @$"Data Source={path}";
 
-                    services.AddDbContext<KinopoiskDbContext>(options=>
-                    {
-                        options.UseSqlite(connectionString);
-                    });
+                    services.ConfigureLocalDatabase();
 
                     services.AddScoped<IMovieService, MovieService>();
                     services.AddScoped<IUserService, UserService>();
-
 
                     services.AddRefitClient<IKinopoiskClient>().ConfigureHttpClient(c =>
                     {
