@@ -1,54 +1,19 @@
-﻿<UserControl x:Class="KinopoiskDesktop.App.Views.HomeView"
+﻿<UserControl x:Class="KinopoiskDesktop.App.Views.UserLibraryView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:local="clr-namespace:KinopoiskDesktop.App.Views"
-             mc:Ignorable="d"
-             Background="#f2f2f2"
              xmlns:vm="clr-namespace:KinopoiskDesktop.App.ViewModels"
-             d:DataContext="{d:DesignInstance Type=vm:HomeViewModel, IsDesignTimeCreatable=True}">
+             Background="#f3f3f3"
+             d:DataContext="{d:DesignInstance Type=vm:UserLibraryViewModel, IsDesignTimeCreatable=True}"
+             mc:Ignorable="d">
     <Grid>
-        <ListBox ItemsSource="{Binding Movies}"
-                 HorizontalContentAlignment="Stretch">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderThickness="1"
-                            BorderBrush="Gray"
-                            Margin="5"
-                            Padding="5">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100" />
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
-                            <Image Grid.Column="0"
-                                   Source="{Binding PosterUrlPreview}"
-                                   Height="100" />
-                            <StackPanel Grid.Column="1"
-                                        Margin="10,0,0,0">
-                                <TextBlock Text="{Binding NameRu}"
-                                           FontWeight="Bold"
-                                           FontSize="16" />
-                                <TextBlock Text="{Binding Year}"
-                                           Foreground="Gray" />
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="IMDb: "
-                                               FontWeight="Bold" />
-                                    <TextBlock Text="{Binding RatingImdb}"
-                                               Foreground="Gray" />
-                                </StackPanel>
-                                <StackPanel Orientation="Horizontal">
-                                    <TextBlock Text="Kinopoisk: "
-                                               FontWeight="Bold" />
-                                    <TextBlock Text="{Binding RatingKinopoisk}"
-                                               Foreground="Gray" />
-                                </StackPanel>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
+        <StackPanel>
+            <TextBlock Text="User Library"
+                       FontSize="24"
+                       FontWeight="Bold"
+                       Margin="10" />
+        </StackPanel>
     </Grid>
 </UserControl>
