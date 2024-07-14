@@ -24,7 +24,5 @@ namespace KinopoiskDesktop.App
             DataContext = mainViewModel;
         }
 
-
-
     }
 }

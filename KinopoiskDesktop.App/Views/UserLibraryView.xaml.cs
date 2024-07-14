@@ -21,10 +21,9 @@ namespace KinopoiskDesktop.App.Views
     /// </summary>
     public partial class UserLibraryView : UserControl
     {
-        public UserLibraryView(UserLibraryViewModel userLibraryViewModel)
+        public UserLibraryView()
         {
             InitializeComponent();
-            DataContext = userLibraryViewModel;
         }
     }
 }

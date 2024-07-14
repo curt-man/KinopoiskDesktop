@@ -21,10 +21,9 @@ namespace KinopoiskDesktop.App.Views
     /// </summary>
     public partial class HomeView : UserControl
     {
-        public HomeView(HomeViewModel homeViewModel)
+        public HomeView()
         {
             InitializeComponent();
-            DataContext = homeViewModel;
         }
     }
 }

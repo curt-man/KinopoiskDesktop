@@ -12,7 +12,7 @@ namespace KinopoiskDesktop.App.Core
         private readonly Action<object?> _execute;
         private readonly Predicate<object?> _canExecute;
 
-        public RelayCommand(Action<object> execute, Predicate<object> canExecute)
+        public RelayCommand(Action<object?> execute, Predicate<object?> canExecute)
         {
             _execute = execute ?? throw new ArgumentNullException(nameof(execute));
             _canExecute = canExecute ?? throw new ArgumentNullException(nameof(canExecute));
@@ -34,4 +34,6 @@ namespace KinopoiskDesktop.App.Core
             _execute(parameter);
         }
     }
+
+
 }

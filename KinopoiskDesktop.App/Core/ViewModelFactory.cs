@@ -9,25 +9,22 @@ namespace KinopoiskDesktop.App.Core
 {
     public class ViewModelFactory : IViewModelFactory
     {
-        private readonly IServiceProvider serviceProvider;
+        private readonly IServiceProvider _serviceProvider;
 
         public ViewModelFactory(IServiceProvider serviceProvider)
         {
-            this.serviceProvider = serviceProvider;
+            _serviceProvider = serviceProvider;
         }
 
         public TViewModel CreateViewModel<TViewModel>() where TViewModel : BaseViewModel
         {
-            using var serviceScope = serviceProvider.CreateScope();
-            var viewModel = serviceScope.ServiceProvider.GetService(typeof(TViewModel));
-            return viewModel != null ? (TViewModel)viewModel : throw new ArgumentNullException(nameof(viewModel));
+            return ActivatorUtilities.CreateInstance<TViewModel>(_serviceProvider);
         }
 
-        public TViewModel CreateViewModel<TViewModel>(object parameter) where TViewModel : BaseViewModel
+        public TViewModel CreateViewModel<TViewModel>(object? parameter) where TViewModel : BaseViewModel
         {
-            using var serviceScope = serviceProvider.CreateScope();
-            var viewModel = ActivatorUtilities.CreateInstance(serviceScope.ServiceProvider, typeof(TViewModel), new object[] { parameter });
-            return viewModel != null ? (TViewModel)viewModel : throw new ArgumentNullException(nameof(viewModel));
+            return ActivatorUtilities.CreateInstance<TViewModel>(_serviceProvider, parameter);
         }
     }
+
 }
