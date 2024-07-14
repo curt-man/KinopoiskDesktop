@@ -1,23 +1,17 @@
 ﻿using KinopoiskDesktop.Domain.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Emit;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.DataAccess
 {
-    public class KinopoiskDbContext : DbContext
+    public class ApplicationDbContext : DbContext, IApplicationDbContext
     {
-        public KinopoiskDbContext(DbContextOptions<KinopoiskDbContext> options) : base(options)
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
-            
+
         }
 
         public DbSet<Movie> Movies { get; set; }
-        public DbSet<AppUser> Users { get; set; }
+        public DbSet<AppUser> AppUsers { get; set; }
         public DbSet<Genre> Genres { get; set; }
         public DbSet<Country> Countries { get; set; }
 
@@ -25,9 +19,7 @@ namespace KinopoiskDesktop.DataAccess
         public DbSet<MovieCountry> MoviesCountries { get; set; }
         public DbSet<AppUserMovie> AppUsersMovies { get; set; }
 
-
-
-        
+        public DbContext DbContext => this;
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
