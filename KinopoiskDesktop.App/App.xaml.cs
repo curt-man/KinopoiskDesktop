@@ -18,7 +18,7 @@ using KinopoiskDesktop.App.Views;
 using KinopoiskDesktop.App.ViewModels;
 using KinopoiskDesktop.App.Core;
 using KinopoiskDesktop.Domain.Managers;
-using DomainImplementation.Managers;
+using KinopoiskDesktop.DomainImplementation.Managers;
 
 namespace KinopoiskDesktop.App
 {
@@ -56,11 +56,17 @@ namespace KinopoiskDesktop.App
                     services.AddSingleton<HomeView>();
                     services.AddSingleton<UserLibraryView>();
                     services.AddSingleton<MovieDetailsView>();
+                    services.AddSingleton<SettingsView>();
+                    services.AddSingleton<LoginView>();
+                    services.AddSingleton<RegisterView>();
 
                     services.AddSingleton<MainViewModel>();
                     services.AddSingleton<HomeViewModel>();
                     services.AddSingleton<UserLibraryViewModel>();
                     services.AddSingleton<MovieDetailsViewModel>();
+                    services.AddSingleton<SettingsViewModel>();
+                    services.AddSingleton<LoginViewModel>();
+                    services.AddSingleton<RegisterViewModel>();
 
 
                     services.AddSingleton<IViewModelFactory, ViewModelFactory>();
@@ -74,6 +80,8 @@ namespace KinopoiskDesktop.App
         {
             await AppHost.StartAsync();
             var mainWindow = AppHost.Services.GetRequiredService<MainView>();
+            var navigationService = AppHost.Services.GetRequiredService<INavigationService>();
+            navigationService.NavigateTo<HomeViewModel>();
             mainWindow.Show();
         }
         

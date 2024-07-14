@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DomainImplementation.Managers
+namespace KinopoiskDesktop.DomainImplementation.Managers
 {
     public class MovieManager : IMovieManager
     {

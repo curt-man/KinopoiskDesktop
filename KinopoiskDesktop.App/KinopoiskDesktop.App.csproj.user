@@ -10,7 +10,16 @@
     <Compile Update="Views\HomeView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\LoginView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\MovieDetailsView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\RegisterView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Update="Views\SettingsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Update="Views\UserLibraryView.xaml.cs">
@@ -21,10 +30,19 @@
     <Page Update="Views\HomeView.xaml">
       <SubType>Designer</SubType>
     </Page>
+    <Page Update="Views\LoginView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
     <Page Update="Views\MainView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MovieDetailsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\RegisterView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\SettingsView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\UserLibraryView.xaml">

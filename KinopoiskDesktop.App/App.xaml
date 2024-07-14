@@ -17,5 +17,17 @@
             <view:MovieDetailsView />
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+            <view:MovieDetailsView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+            <view:MovieDetailsView />
+        </DataTemplate>
+
+        <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
+            <view:MovieDetailsView />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

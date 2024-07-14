@@ -18,6 +18,8 @@ namespace KinopoiskDesktop.App.Services
             get => currentView!;
             private set
             {
+                if (currentView == value)
+                    return;
                 currentView = value;
                 OnPropertyChanged();
             }

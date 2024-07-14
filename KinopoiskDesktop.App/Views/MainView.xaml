@@ -23,6 +23,9 @@
             <Button Content="Library"
                     Height="25"
                     Command="{Binding NavigateToUserLibraryCommand}" />
+            <Button Content="Settings"
+                    Height="25"
+                    Command="{Binding NavigateToSettingsCommand}" />
 
         </StackPanel>
             <ContentControl Grid.Column="1"
