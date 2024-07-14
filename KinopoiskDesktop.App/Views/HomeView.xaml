@@ -10,7 +10,8 @@
              d:DataContext="{d:DesignInstance Type=vm:HomeViewModel, IsDesignTimeCreatable=True}">
     <Grid>
         <ListBox ItemsSource="{Binding Movies}"
-                 HorizontalContentAlignment="Stretch">
+                 HorizontalContentAlignment="Stretch"
+                 SelectedItem="{Binding SelectedMovie}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <Border BorderThickness="1"
@@ -23,27 +24,30 @@
                                 <ColumnDefinition Width="*" />
                             </Grid.ColumnDefinitions>
                             <Image Grid.Column="0"
-                                   Source="{Binding PosterUrlPreview}"
+                                   Source="{Binding Movie.PosterUrlPreview}"
                                    Height="100" />
                             <StackPanel Grid.Column="1"
                                         Margin="10,0,0,0">
-                                <TextBlock Text="{Binding NameRu}"
+                                <TextBlock Text="{Binding Movie.NameRu}"
                                            FontWeight="Bold"
                                            FontSize="16" />
-                                <TextBlock Text="{Binding Year}"
+                                <TextBlock Text="{Binding Movie.Year}"
                                            Foreground="Gray" />
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="IMDb: "
                                                FontWeight="Bold" />
-                                    <TextBlock Text="{Binding RatingImdb}"
+                                    <TextBlock Text="{Binding Movie.RatingImdb}"
                                                Foreground="Gray" />
                                 </StackPanel>
                                 <StackPanel Orientation="Horizontal">
                                     <TextBlock Text="Kinopoisk: "
                                                FontWeight="Bold" />
-                                    <TextBlock Text="{Binding RatingKinopoisk}"
+                                    <TextBlock Text="{Binding Movie.RatingKinopoisk}"
                                                Foreground="Gray" />
                                 </StackPanel>
+                                <Button Content="Details"
+                                        Command="{Binding DataContext.MovieSelectedCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                        CommandParameter="{Binding}" />
                             </StackPanel>
                         </Grid>
                     </Border>

@@ -9,6 +9,10 @@ namespace KinopoiskDesktop.App.ViewModels
 {
     public class UserLibraryViewModel : BaseViewModel
     {
+        public UserLibraryViewModel()
+        {
+            
+        }
 
     }
 }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KinopoiskDesktop.DataAccess.Migrations
 {
-    [DbContext(typeof(KinopoiskDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     partial class KinopoiskDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
@@ -61,7 +61,7 @@ namespace KinopoiskDesktop.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("AppUsers");
                 });
 
             modelBuilder.Entity("KinopoiskDesktop.Domain.Models.AppUserMovie", b =>

@@ -17,6 +17,8 @@ using System.IO;
 using KinopoiskDesktop.App.Views;
 using KinopoiskDesktop.App.ViewModels;
 using KinopoiskDesktop.App.Core;
+using KinopoiskDesktop.Domain.Managers;
+using DomainImplementation.Managers;
 
 namespace KinopoiskDesktop.App
 {
@@ -41,6 +43,9 @@ namespace KinopoiskDesktop.App
                     services.AddScoped<IMovieService, MovieService>();
                     services.AddScoped<IUserService, UserService>();
 
+                    services.AddScoped<IMovieManager, MovieManager>();
+                    services.AddScoped<IAppUserManager, AppUserManager>();
+
                     services.AddRefitClient<IKinopoiskClient>().ConfigureHttpClient(c =>
                     {
                         c.BaseAddress = new Uri(kinopoiskApiSettings.BaseUrl);
@@ -50,15 +55,17 @@ namespace KinopoiskDesktop.App
                     services.AddSingleton<MainView>();
                     services.AddSingleton<HomeView>();
                     services.AddSingleton<UserLibraryView>();
+                    services.AddSingleton<MovieDetailsView>();
 
                     services.AddSingleton<MainViewModel>();
                     services.AddSingleton<HomeViewModel>();
                     services.AddSingleton<UserLibraryViewModel>();
+                    services.AddSingleton<MovieDetailsViewModel>();
 
-                    services.AddSingleton<Func<System.Type, BaseViewModel>>(serviceProvider => viewModelType => (BaseViewModel)serviceProvider.GetRequiredService(viewModelType));
 
                     services.AddSingleton<IViewModelFactory, ViewModelFactory>();
                     services.AddSingleton<INavigationService, NavigationService>();
+                    services.AddSingleton<IApplicationDbContext, ApplicationDbContext>();
                 })
                 .Build();
         }

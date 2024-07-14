@@ -1,0 +1,54 @@
+﻿<UserControl x:Class="KinopoiskDesktop.App.Views.MovieDetailsView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:KinopoiskDesktop.App.Views"
+             xmlns:vm="clr-namespace:KinopoiskDesktop.App.ViewModels"
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=vm:MovieDetailsViewModel, IsDesignTimeCreatable=True}">
+    <Grid Background="#f2f2f2">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image Grid.Column="0"
+               Source="{Binding SelectedMovie.Movie.PosterUrl}"
+               Margin="10" />
+        <StackPanel Grid.Column="1"
+                    Margin="10">
+            <TextBlock Text="{Binding SelectedMovie.Movie.NameRu}"
+                       FontSize="24"
+                       FontWeight="Bold" />
+            <TextBlock Text="{Binding SelectedMovie.Movie.Year}"
+                       Foreground="Gray"
+                       Margin="0,5,0,5" />
+            <TextBlock Text="{Binding SelectedMovie.Movie.Description}"
+                       TextWrapping="Wrap"
+                       Margin="0,10,0,10" />
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,10,0,10">
+                <TextBlock Text="IMDb: "
+                           FontWeight="Bold" />
+                <TextBlock Text="{Binding SelectedMovie.Movie.RatingImdb}"
+                           Foreground="Gray" />
+                <TextBlock Text="Kinopoisk: "
+                           FontWeight="Bold"
+                           Margin="10,0,0,0" />
+                <TextBlock Text="{Binding SelectedMovie.Movie.RatingKinopoisk}"
+                           Foreground="Gray" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,10,0,10">
+                <Button Content="Add to Favorites"
+                        Command="{Binding AddToFavoritesCommand}"
+                        Margin="0,0,10,0" />
+                <Button Content="Mark as Watched"
+                        Command="{Binding MarkAsWatchedCommand}"
+                        Margin="0,0,10,0" />
+                <Button Content="Rate"
+                        Command="{Binding RateMovieCommand}" />
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

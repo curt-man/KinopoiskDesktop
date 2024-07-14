@@ -19,6 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\DomainImplementation\DomainImplementation.csproj" />
     <ProjectReference Include="..\KinopoiskDesktop.DataAccess\KinopoiskDesktop.DataAccess.csproj" />
     <ProjectReference Include="..\KinopoiskDesktop.Domain\KinopoiskDesktop.Domain.csproj" />
     <ProjectReference Include="..\KinopoiskDesktop.Integrations\KinopoiskDesktop.Integrations.csproj" />

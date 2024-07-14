@@ -62,7 +62,7 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Users",
+                name: "AppUsers",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "TEXT", nullable: false),
@@ -149,7 +149,7 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                     table.ForeignKey(
                         name: "FK_AppUsersMovies_Users_AppUserId",
                         column: x => x.AppUserId,
-                        principalTable: "Users",
+                        principalTable: "AppUsers",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -241,7 +241,7 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                 name: "MoviesGenres");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "AppUsers");
 
             migrationBuilder.DropTable(
                 name: "Countries");

@@ -13,5 +13,9 @@
             <view:UserLibraryView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:MovieDetailsViewModel}">
+            <view:MovieDetailsView />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

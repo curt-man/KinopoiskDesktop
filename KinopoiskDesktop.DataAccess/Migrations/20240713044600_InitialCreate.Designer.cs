@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace KinopoiskDesktop.DataAccess.Migrations
 {
-    [DbContext(typeof(KinopoiskDbContext))]
+    [DbContext(typeof(ApplicationDbContext))]
     [Migration("20240713044600_InitialCreate")]
     partial class InitialCreate
     {
@@ -64,7 +64,7 @@ namespace KinopoiskDesktop.DataAccess.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("AppUsers");
                 });
 
             modelBuilder.Entity("KinopoiskDesktop.Domain.Models.AppUserMovie", b =>
