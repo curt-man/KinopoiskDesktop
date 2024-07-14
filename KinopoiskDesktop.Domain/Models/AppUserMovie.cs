@@ -14,8 +14,11 @@ namespace KinopoiskDesktop.Domain.Models
     {
         [Required]
         public Guid AppUserId { get; set; }
+        public AppUser AppUser { get; set; }
+
         [Required]
         public int MovieId { get; set; }
+        public Movie Movie { get; set; }
 
 
         public bool IsFavorite { get; set; } = false;

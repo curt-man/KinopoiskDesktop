@@ -26,7 +26,7 @@ namespace KinopoiskDesktop.App.Extensions
             var dbFilePath = Path.Combine(directory, "KinopoiskDesktopDatabase.db");
             var connectionString = @$"Data Source={dbFilePath}";
 
-            services.AddDbContext<KinopoiskDbContext>(options =>
+            services.AddDbContext<ApplicationDbContext>(options =>
             {
                 options.UseSqlite(connectionString);
             });
