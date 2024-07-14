@@ -5,11 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinopoiskDesktop.App.Services.IService
+namespace KinopoiskDesktop.Domain.Managers
 {
-    public interface IMovieService
+    public interface IMovieManager
     {
-        Task<IEnumerable<AppUserMovie>> GetAllMoviesAsync();
+        Task<IEnumerable<AppUserMovie>> GetMoviesAsync(IEnumerable<Movie> apiMovies);
         Task<AppUserMovie> GetMovieByIdAsync(int id);
         Task<AppUserMovie> GetMovieByNameAsync(string name);
 
@@ -22,8 +22,6 @@ namespace KinopoiskDesktop.App.Services.IService
         Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync();
 
         Task RateMovieAsync(AppUserMovie movie);
-
-
-        // Here should be more methods. Method to find movie by filters. Create a filter class and pass it as a parameter.
+        Task SyncMoviesWithApiAsync(IEnumerable<Movie> apiMovies);
     }
 }

@@ -3,3 +3,6 @@
 obj
 bin
 .vs/KinopoiskDesktop/DesignTimeBuild
+.vs/KinopoiskDesktop/config/applicationhost.config
+.vs/KinopoiskDesktop/v17
+.vs/ProjectEvaluation
