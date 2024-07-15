@@ -1,11 +1,6 @@
 ﻿using KinopoiskDesktop.App.Core;
 using KinopoiskDesktop.App.Services.IService;
 using KinopoiskDesktop.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace KinopoiskDesktop.App.ViewModels
@@ -26,13 +21,12 @@ namespace KinopoiskDesktop.App.ViewModels
             }
         }
 
-        public ICommand AddToFavoritesCommand { get; }
-        public ICommand MarkAsWatchedCommand { get; }
+        public ICommand ToggleFavoriteCommand { get; }
+        public ICommand ToggleWatchedCommand { get; }
         public ICommand RateMovieCommand { get; }
 
         public MovieDetailsViewModel()
         {
-            
         }
 
         public MovieDetailsViewModel(IMovieService movieService, INavigationService navigationService, AppUserMovie movie)
@@ -41,8 +35,8 @@ namespace KinopoiskDesktop.App.ViewModels
             _navigationService = navigationService;
             SelectedMovie = movie;
 
-            AddToFavoritesCommand = new RelayCommand(AddToFavorites, CanExecute);
-            MarkAsWatchedCommand = new RelayCommand(MarkAsWatched, CanExecute);
+            ToggleFavoriteCommand = new RelayCommand(ToggleFavorite, CanExecute);
+            ToggleWatchedCommand = new RelayCommand(ToggleWatched, CanExecute);
             RateMovieCommand = new RelayCommand(RateMovie, CanExecute);
         }
 
@@ -51,31 +45,42 @@ namespace KinopoiskDesktop.App.ViewModels
             return SelectedMovie != null;
         }
 
-        private async void AddToFavorites(object parameter)
+        private async void ToggleFavorite(object parameter)
         {
-            await _movieService.MarkAsFavoriteAsync(SelectedMovie);
-            // Additional logic for updating UI or providing feedback
+            SelectedMovie.IsFavorite = !SelectedMovie.IsFavorite;
+            if (SelectedMovie.IsFavorite)
+            {
+                await _movieService.AddToFavoritesAsync(SelectedMovie);
+            }
+            else
+            {
+                await _movieService.RemoveFromFavoritesAsync(SelectedMovie);
+            }
+            OnPropertyChanged(nameof(SelectedMovie));
         }
 
-        private async void MarkAsWatched(object parameter)
+        private async void ToggleWatched(object parameter)
         {
-            SelectedMovie.IsWatched = true;
-            await _movieService.MarkAsWatchedAsync(SelectedMovie);
-            // Additional logic for updating UI or providing feedback
+            SelectedMovie.IsWatched = !SelectedMovie.IsWatched;
+            if (SelectedMovie.IsWatched)
+            {
+                await _movieService.MarkAsWatchedAsync(SelectedMovie);
+            }
+            else
+            {
+                await _movieService.MarkAsUnwatchedAsync(SelectedMovie);
+            }
+            OnPropertyChanged(nameof(SelectedMovie));
         }
 
         private void RateMovie(object parameter)
         {
-            // Logic for opening a rating dialog or similar
             var rating = ShowRatingDialog();
         }
 
         private double? ShowRatingDialog()
         {
-            
             return 8.5; // Example rating
         }
     }
-
-
 }

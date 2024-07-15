@@ -12,15 +12,13 @@ namespace KinopoiskDesktop.Domain.Managers
     {
         Task<IEnumerable<AppUserMovie>> GetUserMoviesForApi(IEnumerable<Movie> apiMovies);
         Task<IEnumerable<AppUserMovie>> GetUserMoviesByFilter(MovieFilter filter);
-        Task<AppUserMovie> GetMovieByIdAsync(int id);
-        Task<AppUserMovie> GetMovieByNameAsync(string name);
 
-        Task MarkAsFavoriteAsync(AppUserMovie movie);
+        Task AddToFavoritesAsync(AppUserMovie movie);
         Task RemoveFromFavoritesAsync(AppUserMovie movie);
         Task<IEnumerable<AppUserMovie>> GetFavoritesAsync();
 
         Task MarkAsWatchedAsync(AppUserMovie movie);
-        Task RemoveFromWatchedAsync(AppUserMovie movie);
+        Task MarkAsUnwatchedAsync(AppUserMovie movie);
         Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync();
 
         Task RateMovieAsync(AppUserMovie movie);

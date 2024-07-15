@@ -5,8 +5,10 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:KinopoiskDesktop.App.Views"
              xmlns:vm="clr-namespace:KinopoiskDesktop.App.ViewModels"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:MovieDetailsViewModel, IsDesignTimeCreatable=True}">
+
     <Grid Background="#f2f2f2">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200" />
@@ -40,14 +42,15 @@
             </StackPanel>
             <StackPanel Orientation="Horizontal"
                         Margin="0,10,0,10">
-                <Button Content="Add to Favorites"
-                        Command="{Binding AddToFavoritesCommand}"
-                        Margin="0,0,10,0" />
-                <Button Content="Mark as Watched"
-                        Command="{Binding MarkAsWatchedCommand}"
-                        Margin="0,0,10,0" />
-                <Button Content="Rate"
-                        Command="{Binding RateMovieCommand}" />
+                <Button Style="{StaticResource IconButton}"
+                        Command="{Binding ToggleFavoriteCommand}"
+                        Content="{Binding SelectedMovie.IsFavorite, Converter={StaticResource BooleanToFavoriteIconConverter}}" />
+                <Button Style="{StaticResource IconButton}"
+                        Command="{Binding ToggleWatchedCommand}"
+                        Content="{Binding SelectedMovie.IsWatched, Converter={StaticResource BooleanToWatchedIconConverter}}" />
+                <Button Style="{StaticResource IconButton}"
+                        Command="{Binding RateMovieCommand}"
+                        Content="StarOutline" />
             </StackPanel>
         </StackPanel>
     </Grid>

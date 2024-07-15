@@ -5,33 +5,41 @@
              xmlns:viewModel="clr-namespace:KinopoiskDesktop.App.ViewModels"
              xmlns:view="clr-namespace:KinopoiskDesktop.App.Views">
     <Application.Resources>
-        <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
-            <view:HomeView/>
-        </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:UserLibraryViewModel}">
-            <view:UserLibraryView/>
-        </DataTemplate>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
 
-        <DataTemplate DataType="{x:Type viewModel:MovieDetailsViewModel}">
-            <view:MovieDetailsView />
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView />
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
-            <view:SettingsView />
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:UserLibraryViewModel}">
+                <view:UserLibraryView />
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
-            <view:LoginView />
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MovieDetailsViewModel}">
+                <view:MovieDetailsView />
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
-            <view:RegisterView/>
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SettingsViewModel}">
+                <view:SettingsView />
+            </DataTemplate>
 
-        <DataTemplate DataType="{x:Type viewModel:FilterViewModel}">
-            <view:FilterView />
-        </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:LoginViewModel}">
+                <view:LoginView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:RegisterViewModel}">
+                <view:RegisterView />
+            </DataTemplate>
+
+            <DataTemplate DataType="{x:Type viewModel:FilterViewModel}">
+                <view:FilterView />
+            </DataTemplate>
+
+        </ResourceDictionary>
 
     </Application.Resources>
 </Application>

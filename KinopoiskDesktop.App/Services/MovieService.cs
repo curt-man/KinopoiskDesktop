@@ -79,56 +79,11 @@ namespace KinopoiskDesktop.App.Services
                 }
                 catch (Exception)
                 {
-
+                    // Log the exception
                 }
             }
 
             return userMovies;
-        }
-
-        public Task<IEnumerable<AppUserMovie>> GetFavoritesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<AppUserMovie> GetMovieByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<AppUserMovie> GetMovieByNameAsync(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task MarkAsFavoriteAsync(AppUserMovie movie)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task MarkAsWatchedAsync(AppUserMovie movie)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task RateMovieAsync(AppUserMovie movie)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task RemoveFromFavoritesAsync(AppUserMovie movie)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task RemoveFromWatchedAsync(AppUserMovie movie)
-        {
-            throw new NotImplementedException();
         }
 
         public async Task SyncWithApiAsync()
@@ -153,8 +108,44 @@ namespace KinopoiskDesktop.App.Services
             }
             catch (Exception)
             {
-
+                // Log the exception
             }
+        }
+
+
+        public async Task<IEnumerable<AppUserMovie>> GetFavoritesAsync()
+        {
+            return await _movieManager.GetFavoritesAsync();
+        }
+
+        public async Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync()
+        {
+            return await _movieManager.GetWatchedMoviesAsync();
+        }
+
+        public async Task AddToFavoritesAsync(AppUserMovie movie)
+        {
+            await _movieManager.AddToFavoritesAsync(movie);   
+        }
+
+        public async Task RemoveFromFavoritesAsync(AppUserMovie movie)
+        {
+            await _movieManager.RemoveFromFavoritesAsync(movie);
+        }
+
+        public async Task MarkAsWatchedAsync(AppUserMovie movie)
+        {
+            await _movieManager.MarkAsWatchedAsync(movie);
+        }
+
+        public async Task MarkAsUnwatchedAsync(AppUserMovie movie)
+        {
+            await _movieManager.MarkAsUnwatchedAsync(movie);
+        }
+
+        public async Task RateMovieAsync(AppUserMovie movie)
+        {
+            await _movieManager.RateMovieAsync(movie);
         }
     }
 }

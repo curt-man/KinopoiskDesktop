@@ -26,21 +26,6 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             _currentUserId = _authenticationManager.CurrentUser?.Id;
         }
 
-        public async Task<IEnumerable<AppUserMovie>> GetFavoritesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<AppUserMovie> GetMovieByIdAsync(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task<AppUserMovie> GetMovieByNameAsync(string name)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<IEnumerable<AppUserMovie>> GetUserMoviesByFilter(MovieFilter filter)
         {
             try
@@ -94,6 +79,7 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
                     }
                 }
 
+                // TODO: Add support for other rating types
                 if (filter.RatingFrom.HasValue)
                 {
                     filteredMoviesQuery = filteredMoviesQuery.Where(m =>
@@ -130,6 +116,8 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
                         m.ImdbId == null || m.ImdbId == filter.ImdbId);
                 }
 
+                // TODO: Add support for other search fields
+                // TODO: Something wrong with encoding, need to check
                 if (!string.IsNullOrWhiteSpace(filter.Keyword))
                 {
                     var keyword = filter.Keyword.ToLowerInvariant();
@@ -156,11 +144,10 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             }
             catch (Exception)
             {
-                // Log the exception (not implemented here)
+                // Log the exception
                 return new List<AppUserMovie>();
             }
         }
-
 
         public async Task<IEnumerable<AppUserMovie>> GetUserMoviesForApi(IEnumerable<Movie> apiMovies)
         {
@@ -190,39 +177,6 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             
         }
 
-
-        public async Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync()
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task MarkAsFavoriteAsync(AppUserMovie movie)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task MarkAsWatchedAsync(AppUserMovie movie)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task RateMovieAsync(AppUserMovie movie)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task RemoveFromFavoritesAsync(AppUserMovie movie)
-        {
-            throw new NotImplementedException();
-        }
-
-        public async Task RemoveFromWatchedAsync(AppUserMovie movie)
-        {
-            throw new NotImplementedException();
-        }
-
-
-
         public async Task SyncWithApiAsync<TEntity, TId>(IEnumerable<TEntity> apiEntities)
             where TEntity : BaseEntity<TId>, ISyncableEntity<TId>
         {
@@ -231,6 +185,7 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             var existingEntities = await _context.DbContext.Set<TEntity>()
                 .ToListAsync();
 
+            // TODO: Different implementation for generic synchronization
             var existingEntityDict = existingEntities
                 .Where(e => apiEntitiesIds.Contains(e.SyncProperty))
                 .ToDictionary(e => e.SyncProperty);
@@ -240,16 +195,17 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
 
             foreach (var apiEntity in apiEntities)
             {
-                apiEntity.SyncedAt = DateTime.UtcNow;
-                apiEntity.SyncPeriod = TimeSpan.FromMinutes(60);
-
                 if (existingEntityDict.TryGetValue(apiEntity.SyncProperty, out var existingEntity))
                 {
+                    existingEntity.SyncedAt = DateTime.UtcNow;
+                    existingEntity.SyncPeriod = TimeSpan.FromHours(12);
                     existingEntity.UpdatedAt = DateTime.UtcNow;
                     entitiesToUpdate.Add(existingEntity);
                 }
                 else
                 {
+                    apiEntity.SyncedAt = DateTime.UtcNow;
+                    apiEntity.SyncPeriod = TimeSpan.FromHours(12);
                     apiEntity.CreatedAt = DateTime.UtcNow;
                     entitiesToInsert.Add(apiEntity);
                 }
@@ -261,6 +217,7 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             await _context.DbContext.SaveChangesAsync();
         }
 
+        // TODO: Use generic synchronization method instead
         public async Task SyncMoviesWithApiAsync(IEnumerable<Movie> apiMovies)
         {
             var apiMovieIds = apiMovies.Select(m => m.KinopoiskId).ToList();
@@ -280,13 +237,13 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
                 {
                     existingMovie.UpdatedAt = DateTime.UtcNow;
                     existingMovie.SyncedAt = DateTime.UtcNow;
-                    existingMovie.SyncPeriod = TimeSpan.FromMinutes(30);
+                    existingMovie.SyncPeriod = TimeSpan.FromMinutes(60);
                     moviesToUpdate.Add(existingMovie);
                 }
                 else
                 {
                     apiMovie.SyncedAt = DateTime.UtcNow;
-                    apiMovie.SyncPeriod = TimeSpan.FromMinutes(30);
+                    apiMovie.SyncPeriod = TimeSpan.FromMinutes(60);
                     apiMovie.CreatedAt = DateTime.UtcNow;
                     moviesToInsert.Add(apiMovie);
                 }
@@ -308,5 +265,83 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
         {
             return _context.Genres.ToList();
         }
+
+
+        public async Task AddToFavoritesAsync(AppUserMovie movie)
+        {
+            await UpsertMovie(movie);
+        }
+
+        public async Task RemoveFromFavoritesAsync(AppUserMovie movie)
+        {
+            await UpsertMovie(movie);       
+        }
+
+        public async Task<IEnumerable<AppUserMovie>> GetFavoritesAsync()
+        {
+            if (_currentUserId == null)
+            {
+                return Enumerable.Empty<AppUserMovie>();
+            }
+            var userMovies = await _context.AppUsersMovies
+                .Include(x => x.Movie)
+                .Include(x => x.AppUser)
+                .Where(x => x.AppUserId == _currentUserId && x.IsFavorite)
+                .ToListAsync();
+            return userMovies;
+        }
+
+        public async Task MarkAsWatchedAsync(AppUserMovie movie)
+        {
+            await UpsertMovie(movie);
+        }
+
+
+        public async Task MarkAsUnwatchedAsync(AppUserMovie movie)
+        {
+            await UpsertMovie(movie);
+        }
+
+
+        public async Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync()
+        {
+            if (_currentUserId == null)
+            {
+                return Enumerable.Empty<AppUserMovie>();
+            }
+            var userMovies = await _context.AppUsersMovies
+                .Include(x => x.Movie)
+                .Include(x => x.AppUser)
+                .Where(x => x.AppUserId == _currentUserId && x.IsWatched)
+                .ToListAsync();
+            return userMovies;
+        }
+
+        public async Task RateMovieAsync(AppUserMovie movie)
+        {
+            await UpsertMovie(movie);
+        }
+
+
+        private async Task UpsertMovie(AppUserMovie movie)
+        {
+            if (_currentUserId == null)
+            {
+                return;
+            }
+
+            var appUserMovie = await _context.AppUsersMovies.Include(x=>x.AppUser).FirstOrDefaultAsync(x => x.MovieId == movie.MovieId && x.AppUserId == _currentUserId);
+            if (appUserMovie == null)
+            {
+                movie.AppUserId = _currentUserId.Value;
+                await _context.AppUsersMovies.AddAsync(movie);
+            }
+            else
+            {
+                _context.AppUsersMovies.Update(movie);
+            }
+            await _context.DbContext.SaveChangesAsync();
+        }
+
     }
 }
