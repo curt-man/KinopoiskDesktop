@@ -21,6 +21,9 @@ namespace KinopoiskDesktop.App.Services
 
         public AppUser CurrentUser => _authenticationManager.CurrentUser;
 
+        public Action<object, EventArgs> UserLoggedIn { get; set; }
+        public Action<object, EventArgs> UserLoggedOut { get; set; }
+
         public async Task<bool> Login(string login, string password)
         {
             if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
@@ -28,12 +31,18 @@ namespace KinopoiskDesktop.App.Services
             if (CurrentUser != null)
                 return false;
 
-            return await _authenticationManager.Login(login, password);
+            var result =  await _authenticationManager.Login(login, password);
+            if (result)
+                UserLoggedIn?.Invoke(this, EventArgs.Empty);
+            return result;
         }
 
         public async Task<bool> Logout()
         {
-            return await _authenticationManager.Logout();
+            var result = await _authenticationManager.Logout();
+            if (result)
+                UserLoggedOut?.Invoke(this, EventArgs.Empty);
+            return result;
         }
 
         public async Task<bool> Register(string login, string password)
@@ -43,7 +52,10 @@ namespace KinopoiskDesktop.App.Services
             if (CurrentUser != null)
                 return false;
 
-            return await _authenticationManager.Register(login, password);
+            var result = await _authenticationManager.Register(login, password);
+            if (result)
+                UserLoggedIn?.Invoke(this, EventArgs.Empty);
+            return result;
         }
     }
 }

@@ -14,5 +14,7 @@ namespace KinopoiskDesktop.App.Services.IService
         Task<bool> Logout();
 
         AppUser CurrentUser { get; }
+        Action<object, EventArgs> UserLoggedIn { get; set; }
+        Action<object, EventArgs> UserLoggedOut { get; set; }
     }
 }

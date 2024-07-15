@@ -17,13 +17,11 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
     {
         private readonly IApplicationDbContext _context;
         private readonly IAuthenticationManager _authenticationManager;
-        private Guid? _currentUserId;
 
         public MovieManager(IApplicationDbContext context, IAuthenticationManager authenticationManager)
         {
             _context = context;
             _authenticationManager = authenticationManager;
-            _currentUserId = _authenticationManager.CurrentUser?.Id;
         }
 
         public async Task<IEnumerable<AppUserMovie>> GetUserMoviesByFilter(MovieFilter filter)
@@ -156,7 +154,7 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
                 var apiMovieIds = apiMovies.Select(m => m.KinopoiskId).ToList();
 
                 var movies = _context.Movies.Where(m => apiMovieIds.Contains(m.KinopoiskId))
-                                            .Include(m => m.MovieAppUsers.Where(mu => mu.AppUserId == _currentUserId))
+                                            .Include(m => m.MovieAppUsers.Where(mu => mu.AppUserId == _authenticationManager.CurrentUserId))
                                             .ToList();
 
                 var userMovies = movies.Select(m => new AppUserMovie
@@ -279,14 +277,14 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
 
         public async Task<IEnumerable<AppUserMovie>> GetFavoritesAsync()
         {
-            if (_currentUserId == null)
+            if (_authenticationManager.CurrentUser == null)
             {
                 return Enumerable.Empty<AppUserMovie>();
             }
             var userMovies = await _context.AppUsersMovies
                 .Include(x => x.Movie)
                 .Include(x => x.AppUser)
-                .Where(x => x.AppUserId == _currentUserId && x.IsFavorite)
+                .Where(x => x.AppUserId == _authenticationManager.CurrentUserId && x.IsFavorite)
                 .ToListAsync();
             return userMovies;
         }
@@ -305,14 +303,14 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
 
         public async Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync()
         {
-            if (_currentUserId == null)
+            if (_authenticationManager.CurrentUserId == null)
             {
                 return Enumerable.Empty<AppUserMovie>();
             }
             var userMovies = await _context.AppUsersMovies
                 .Include(x => x.Movie)
                 .Include(x => x.AppUser)
-                .Where(x => x.AppUserId == _currentUserId && x.IsWatched)
+                .Where(x => x.AppUserId == _authenticationManager.CurrentUserId && x.IsWatched)
                 .ToListAsync();
             return userMovies;
         }
@@ -325,15 +323,15 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
 
         private async Task UpsertMovie(AppUserMovie movie)
         {
-            if (_currentUserId == null)
+            if (_authenticationManager.CurrentUserId == null)
             {
                 return;
             }
 
-            var appUserMovie = await _context.AppUsersMovies.Include(x=>x.AppUser).FirstOrDefaultAsync(x => x.MovieId == movie.MovieId && x.AppUserId == _currentUserId);
+            var appUserMovie = await _context.AppUsersMovies.Include(x=>x.AppUser).FirstOrDefaultAsync(x => x.MovieId == movie.MovieId && x.AppUserId == _authenticationManager.CurrentUserId);
             if (appUserMovie == null)
             {
-                movie.AppUserId = _currentUserId.Value;
+                movie.AppUserId = _authenticationManager.CurrentUserId.Value;
                 await _context.AppUsersMovies.AddAsync(movie);
             }
             else

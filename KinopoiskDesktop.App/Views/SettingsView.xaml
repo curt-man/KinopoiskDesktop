@@ -8,23 +8,46 @@
              xmlns:vm="clr-namespace:KinopoiskDesktop.App.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:SettingsViewModel, IsDesignTimeCreatable=True}">
     <Grid>
-        <StackPanel HorizontalAlignment="Center"
-                    VerticalAlignment="Center">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.Row="0"
+                    Grid.Column="0"
+                    Grid.ColumnSpan="2"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Margin="24">
             <TextBlock Text="Settings"
                        FontWeight="Bold"
-                       FontSize="24" />
-            <TextBlock Text="{Binding CurrentUser.UserName}"
-                       FontWeight="Bold"
-                       FontSize="16" />
-            <Button Width="200"
-                    Content="Login"
-                    Command="{Binding NavigateToLoginCommand}" />
-            <Button Width="200"
-                    Content="Register"
-                    Command="{Binding NavigateToRegisterCommand}" />
-            <Button Width="200"
-                    Content="Logout"
-                    Command="{Binding LogoutCommand}" />
+                       FontSize="24"
+                       Margin="48 24 48 24"/>
+
+            <StackPanel HorizontalAlignment="Center"
+                        VerticalAlignment="Center">
+                
+                <TextBlock Text="Logged in user: "
+                           FontSize="16"
+                           Margin="0 0 0 0" />
+                <TextBlock Text="{Binding CurrentUser.UserName}"
+                           FontWeight="Bold"
+                           FontSize="24"
+                           Margin="0 0 0 24" />
+                <Button Width="200"
+                        Content="Login"
+                        Command="{Binding NavigateToLoginCommand}" />
+                <Button Width="200"
+                        Content="Register"
+                        Command="{Binding NavigateToRegisterCommand}" />
+                <Button Width="200"
+                        Content="Logout"
+                        Command="{Binding LogoutCommand}" />
+            </StackPanel>
         </StackPanel>
+        
     </Grid>
 </UserControl>

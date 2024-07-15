@@ -22,6 +22,8 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             private set { _currentUser = value; }
         }
 
+        public Guid? CurrentUserId => CurrentUser?.Id;
+
         public AuthenticationManager(IApplicationDbContext context)
         {
             _context = context;

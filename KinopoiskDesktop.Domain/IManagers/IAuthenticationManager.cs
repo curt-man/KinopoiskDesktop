@@ -14,5 +14,6 @@ namespace KinopoiskDesktop.Domain.IManagers
         Task<bool> Logout();
 
         AppUser CurrentUser { get; }
+        Guid? CurrentUserId { get; }
     }
 }
