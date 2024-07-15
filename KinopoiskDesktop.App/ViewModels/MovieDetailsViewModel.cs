@@ -30,6 +30,11 @@ namespace KinopoiskDesktop.App.ViewModels
         public ICommand MarkAsWatchedCommand { get; }
         public ICommand RateMovieCommand { get; }
 
+        public MovieDetailsViewModel()
+        {
+            
+        }
+
         public MovieDetailsViewModel(IMovieService movieService, INavigationService navigationService, AppUserMovie movie)
         {
             _movieService = movieService;

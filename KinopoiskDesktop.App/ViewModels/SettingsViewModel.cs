@@ -21,6 +21,11 @@ namespace KinopoiskDesktop.App.ViewModels
         public ICommand NavigateToRegisterCommand { get; }
         public ICommand NavigateToLoginCommand { get; }
 
+        public SettingsViewModel()
+        {
+            
+        }
+
         public SettingsViewModel(IAuthenticationService authenticationService, INavigationService navigationService)
         {
             _authenticationService = authenticationService;

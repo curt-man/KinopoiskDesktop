@@ -26,7 +26,12 @@ namespace KinopoiskDesktop.App.ViewModels
 			}
 		}
 
-		public MainViewModel(INavigationService navigationService)
+        public MainViewModel()
+        {
+            
+        }
+
+        public MainViewModel(INavigationService navigationService)
         {
             NavigationService = navigationService;
 			NavigateToHomeCommand = new RelayCommand((_) => NavigationService.NavigateTo<HomeViewModel>(), (_) => true);
