@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace KinopoiskDesktop.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class Init3 : Migration
+    public partial class Init1 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -34,21 +34,57 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Countries",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    SyncedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    SyncPeriod = table.Column<TimeSpan>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Countries", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Genres",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "INTEGER", nullable: false)
+                        .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", nullable: false),
+                    SyncedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    SyncPeriod = table.Column<TimeSpan>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Genres", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Movies",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     KinopoiskId = table.Column<int>(type: "INTEGER", nullable: false),
-                    KinopoiskHDId = table.Column<string>(type: "TEXT", nullable: false),
-                    ImdbId = table.Column<string>(type: "TEXT", nullable: false),
-                    NameRu = table.Column<string>(type: "TEXT", nullable: false),
-                    NameEn = table.Column<string>(type: "TEXT", nullable: false),
-                    NameOriginal = table.Column<string>(type: "TEXT", nullable: false),
-                    PosterUrl = table.Column<string>(type: "TEXT", nullable: false),
-                    PosterUrlPreview = table.Column<string>(type: "TEXT", nullable: false),
-                    CoverUrl = table.Column<string>(type: "TEXT", nullable: false),
-                    LogoUrl = table.Column<string>(type: "TEXT", nullable: false),
+                    KinopoiskHDId = table.Column<string>(type: "TEXT", nullable: true),
+                    ImdbId = table.Column<string>(type: "TEXT", nullable: true),
+                    NameRu = table.Column<string>(type: "TEXT", nullable: true),
+                    NameEn = table.Column<string>(type: "TEXT", nullable: true),
+                    NameOriginal = table.Column<string>(type: "TEXT", nullable: true),
+                    PosterUrl = table.Column<string>(type: "TEXT", nullable: true),
+                    PosterUrlPreview = table.Column<string>(type: "TEXT", nullable: true),
+                    CoverUrl = table.Column<string>(type: "TEXT", nullable: true),
+                    LogoUrl = table.Column<string>(type: "TEXT", nullable: true),
                     ReviewsCount = table.Column<int>(type: "INTEGER", nullable: false),
                     RatingKinopoisk = table.Column<double>(type: "REAL", nullable: true),
                     RatingKinopoiskVoteCount = table.Column<int>(type: "INTEGER", nullable: true),
@@ -56,17 +92,17 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                     RatingImdbVoteCount = table.Column<int>(type: "INTEGER", nullable: true),
                     RatingFilmCritics = table.Column<double>(type: "REAL", nullable: true),
                     RatingFilmCriticsVoteCount = table.Column<int>(type: "INTEGER", nullable: true),
-                    WebUrl = table.Column<string>(type: "TEXT", nullable: false),
+                    WebUrl = table.Column<string>(type: "TEXT", nullable: true),
                     Year = table.Column<int>(type: "INTEGER", nullable: true),
                     FilmLength = table.Column<int>(type: "INTEGER", nullable: true),
-                    Slogan = table.Column<string>(type: "TEXT", nullable: false),
-                    Description = table.Column<string>(type: "TEXT", nullable: false),
-                    ShortDescription = table.Column<string>(type: "TEXT", nullable: false),
-                    EditorAnnotation = table.Column<string>(type: "TEXT", nullable: false),
+                    Slogan = table.Column<string>(type: "TEXT", nullable: true),
+                    Description = table.Column<string>(type: "TEXT", nullable: true),
+                    ShortDescription = table.Column<string>(type: "TEXT", nullable: true),
+                    EditorAnnotation = table.Column<string>(type: "TEXT", nullable: true),
                     ProductionStatus = table.Column<int>(type: "INTEGER", nullable: true),
-                    Type = table.Column<int>(type: "INTEGER", nullable: false),
-                    RatingMpaa = table.Column<string>(type: "TEXT", nullable: false),
-                    RatingAgeLimits = table.Column<string>(type: "TEXT", nullable: false),
+                    Type = table.Column<int>(type: "INTEGER", nullable: true),
+                    RatingMpaa = table.Column<string>(type: "TEXT", nullable: true),
+                    RatingAgeLimits = table.Column<string>(type: "TEXT", nullable: true),
                     StartYear = table.Column<int>(type: "INTEGER", nullable: true),
                     EndYear = table.Column<int>(type: "INTEGER", nullable: true),
                     Serial = table.Column<bool>(type: "INTEGER", nullable: true),
@@ -108,50 +144,6 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                         principalTable: "Movies",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Countries",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    MovieId = table.Column<int>(type: "INTEGER", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Countries", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Countries_Movies_MovieId",
-                        column: x => x.MovieId,
-                        principalTable: "Movies",
-                        principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Genres",
-                columns: table => new
-                {
-                    Id = table.Column<int>(type: "INTEGER", nullable: false)
-                        .Annotation("Sqlite:Autoincrement", true),
-                    Name = table.Column<string>(type: "TEXT", nullable: false),
-                    MovieId = table.Column<int>(type: "INTEGER", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Genres", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Genres_Movies_MovieId",
-                        column: x => x.MovieId,
-                        principalTable: "Movies",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -205,16 +197,6 @@ namespace KinopoiskDesktop.DataAccess.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_AppUsersMovies_MovieId",
                 table: "AppUsersMovies",
-                column: "MovieId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Countries_MovieId",
-                table: "Countries",
-                column: "MovieId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Genres_MovieId",
-                table: "Genres",
                 column: "MovieId");
 
             migrationBuilder.CreateIndex(

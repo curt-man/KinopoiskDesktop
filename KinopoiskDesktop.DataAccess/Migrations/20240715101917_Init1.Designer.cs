@@ -11,8 +11,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KinopoiskDesktop.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240714172445_Init3")]
-    partial class Init3
+    [Migration("20240715101917_Init1")]
+    partial class Init1
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -103,19 +103,20 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("MovieId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeSpan?>("SyncPeriod")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("SyncedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("Countries");
                 });
@@ -132,19 +133,20 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("MovieId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeSpan?>("SyncPeriod")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("SyncedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("Genres");
                 });
@@ -159,7 +161,6 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("CoverUrl")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime>("CreatedAt")
@@ -169,11 +170,9 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("EditorAnnotation")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("EndYear")
@@ -183,45 +182,36 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ImdbId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("KinopoiskHDId")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("KinopoiskId")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("LogoUrl")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NameEn")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NameOriginal")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("NameRu")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PosterUrl")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<string>("PosterUrlPreview")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("ProductionStatus")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("RatingAgeLimits")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<double?>("RatingFilmCritics")
@@ -243,7 +233,6 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("RatingMpaa")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int>("ReviewsCount")
@@ -253,14 +242,12 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("ShortDescription")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<bool?>("ShortFilm")
                         .HasColumnType("INTEGER");
 
                     b.Property<string>("Slogan")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("StartYear")
@@ -272,14 +259,13 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                     b.Property<DateTime?>("SyncedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Type")
+                    b.Property<int?>("Type")
                         .HasColumnType("INTEGER");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("WebUrl")
-                        .IsRequired()
                         .HasColumnType("TEXT");
 
                     b.Property<int?>("Year")
@@ -339,20 +325,6 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("KinopoiskDesktop.Domain.Models.Country", b =>
-                {
-                    b.HasOne("KinopoiskDesktop.Domain.Models.Movie", null)
-                        .WithMany("Countries")
-                        .HasForeignKey("MovieId");
-                });
-
-            modelBuilder.Entity("KinopoiskDesktop.Domain.Models.Genre", b =>
-                {
-                    b.HasOne("KinopoiskDesktop.Domain.Models.Movie", null)
-                        .WithMany("Genres")
-                        .HasForeignKey("MovieId");
-                });
-
             modelBuilder.Entity("KinopoiskDesktop.Domain.Models.MovieCountry", b =>
                 {
                     b.HasOne("KinopoiskDesktop.Domain.Models.Country", "Country")
@@ -362,7 +334,7 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("KinopoiskDesktop.Domain.Models.Movie", "Movie")
-                        .WithMany()
+                        .WithMany("Countries")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -381,7 +353,7 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("KinopoiskDesktop.Domain.Models.Movie", "Movie")
-                        .WithMany()
+                        .WithMany("Genres")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();

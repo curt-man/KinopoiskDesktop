@@ -16,10 +16,14 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
     public class MovieManager : IMovieManager
     {
         private readonly IApplicationDbContext _context;
+        private readonly IAuthenticationManager _authenticationManager;
+        private Guid? _currentUserId;
 
-        public MovieManager(IApplicationDbContext context)
+        public MovieManager(IApplicationDbContext context, IAuthenticationManager authenticationManager)
         {
             _context = context;
+            _authenticationManager = authenticationManager;
+            _currentUserId = _authenticationManager.CurrentUser?.Id;
         }
 
         public async Task<IEnumerable<AppUserMovie>> GetFavoritesAsync()
@@ -37,17 +41,147 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<AppUserMovie>> GetMoviesAsync(IEnumerable<Movie> apiMovies, Guid userId)
+        public async Task<IEnumerable<AppUserMovie>> GetUserMoviesByFilter(MovieFilter filter)
         {
-            var existingMovies = _context.Movies.Where(x => apiMovies.Contains(x)).Include(x => x.MovieAppUsers.Where(x => x.AppUserId == userId));
+            try
+            {
+                var filteredMoviesQuery = _context.Movies.AsQueryable();
 
-            throw new NotImplementedException();
+                if (filter.Countries != null && filter.Countries.Any())
+                {
+                    filteredMoviesQuery = filteredMoviesQuery.Include(x=>x.Countries).Where(m => m.Countries.Any(c => filter.Countries.Contains(c.CountryId)));
+                }
+
+                if (filter.Genres != null && filter.Genres.Any())
+                {
+                    filteredMoviesQuery = filteredMoviesQuery.Include(x=>x.Genres).Where(m => m.Genres.Any(g => filter.Genres.Contains(g.GenreId)));
+                }
+
+                if (filter.Order.HasValue)
+                {
+                    switch (filter.Order.Value)
+                    {
+                        case OrderTypeFilter.RATING:
+                            filteredMoviesQuery = filteredMoviesQuery.OrderByDescending(m => m.RatingKinopoisk);
+                            break;
+                        case OrderTypeFilter.NUM_VOTE:
+                            filteredMoviesQuery = filteredMoviesQuery.OrderByDescending(m => m.RatingKinopoiskVoteCount);
+                            break;
+                        case OrderTypeFilter.YEAR:
+                            filteredMoviesQuery = filteredMoviesQuery.OrderByDescending(m => m.Year);
+                            break;
+                    }
+                }
+
+                if (filter.Type.HasValue)
+                {
+                    switch (filter.Type.Value)
+                    {
+                        case MovieTypeFilter.FILM:
+                            filteredMoviesQuery = filteredMoviesQuery.Where(m => m.Type == FilmType.FILM);
+                            break;
+                        case MovieTypeFilter.TV_SHOW:
+                            filteredMoviesQuery = filteredMoviesQuery.Where(m => m.Type == FilmType.TV_SHOW);
+                            break;
+                        case MovieTypeFilter.TV_SERIES:
+                            filteredMoviesQuery = filteredMoviesQuery.Where(m => m.Type == FilmType.TV_SERIES);
+                            break;
+                        case MovieTypeFilter.MINI_SERIES:
+                            filteredMoviesQuery = filteredMoviesQuery.Where(m => m.Type == FilmType.MINI_SERIES);
+                            break;
+                        case MovieTypeFilter.ALL:
+                            break;
+                    }
+                }
+
+                if (filter.RatingFrom.HasValue)
+                {
+                    filteredMoviesQuery = filteredMoviesQuery.Where(m =>
+                        (m.RatingKinopoisk == null || m.RatingKinopoisk >= filter.RatingFrom )||
+                        (m.RatingImdb == null || m.RatingImdb >= filter.RatingFrom )||
+                        (m.RatingFilmCritics == null || m.RatingFilmCritics >= filter.RatingTo));
+                }
+
+                if (filter.RatingTo.HasValue)
+                {
+                    filteredMoviesQuery = filteredMoviesQuery.Where(m =>
+                        (m.RatingKinopoisk == null || m.RatingKinopoisk <= filter.RatingFrom) ||
+                        (m.RatingImdb == null || m.RatingImdb <= filter.RatingFrom) ||
+                        (m.RatingFilmCritics == null || m.RatingFilmCritics <= filter.RatingTo));
+                }
+
+                if (filter.YearFrom.HasValue)
+                {
+                    filteredMoviesQuery = filteredMoviesQuery.Where(m =>
+                        m.Year == null || m.Year >= filter.YearFrom);
+                }
+
+                if (filter.YearTo.HasValue)
+                {
+                    filteredMoviesQuery = filteredMoviesQuery.Where(m =>
+                        m.Year == null || m.Year <= filter.YearFrom);
+                }
+
+                if (!string.IsNullOrWhiteSpace(filter.ImdbId))
+                {
+                    filteredMoviesQuery = filteredMoviesQuery.Where(m =>
+                        m.ImdbId == null || m.ImdbId == filter.ImdbId);
+                }
+
+                if (!string.IsNullOrWhiteSpace(filter.Keyword))
+                {
+                    filteredMoviesQuery = filteredMoviesQuery.Where(m => m.NameRu.Contains(filter.Keyword) || m.NameEn.Contains(filter.Keyword) || m.NameOriginal.Contains(filter.Keyword));
+                }
+
+                var filteredMovies = await filteredMoviesQuery.ToListAsync();
+
+                var userMovies = filteredMovies.Select(m => new AppUserMovie
+                {
+                    Movie = m,
+                    AppUser = m.MovieAppUsers?.FirstOrDefault()?.AppUser,
+                    IsFavorite = m.MovieAppUsers?.FirstOrDefault()?.IsFavorite ?? false,
+                    IsWatched = m.MovieAppUsers?.FirstOrDefault()?.IsWatched ?? false,
+                    Rating = m.MovieAppUsers?.FirstOrDefault()?.Rating
+                }).ToList();
+
+                return userMovies;
+            }
+            catch (Exception)
+            {
+                // Log the exception (not implemented here)
+                return new List<AppUserMovie>();
+            }
         }
 
-        public Task<IEnumerable<AppUserMovie>> GetMoviesAsync(IEnumerable<Movie> apiMovies)
+
+        public async Task<IEnumerable<AppUserMovie>> GetUserMoviesForApi(IEnumerable<Movie> apiMovies)
         {
-            throw new NotImplementedException();
+            try
+            {
+                var apiMovieIds = apiMovies.Select(m => m.KinopoiskId).ToList();
+
+                var movies = _context.Movies.Where(m => apiMovieIds.Contains(m.KinopoiskId))
+                                            .Include(m => m.MovieAppUsers.Where(mu => mu.AppUserId == _currentUserId))
+                                            .ToList();
+
+                var userMovies = movies.Select(m => new AppUserMovie
+                {
+                    Movie = m,
+                    AppUser = m.MovieAppUsers?.FirstOrDefault()?.AppUser,
+                    IsFavorite = m.MovieAppUsers?.FirstOrDefault()?.IsFavorite ?? false,
+                    IsWatched = m.MovieAppUsers?.FirstOrDefault()?.IsWatched ?? false,
+                    Rating = m.MovieAppUsers?.FirstOrDefault()?.Rating
+                });
+
+                return userMovies;
+            }
+            catch (Exception)
+            {
+                return new List<AppUserMovie>();
+            }
+            
         }
+
 
         public async Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync()
         {

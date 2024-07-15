@@ -11,7 +11,8 @@ namespace KinopoiskDesktop.App.Services.IService
 {
     public interface IMovieService
     {
-        Task<IEnumerable<AppUserMovie>> GetAllMoviesAsync();
+        Task<IEnumerable<AppUserMovie>> GetMoviesByFilterAsync(MovieFilter? filter = null);
+
         Task<AppUserMovie> GetMovieByIdAsync(int id);
         Task<AppUserMovie> GetMovieByNameAsync(string name);
 

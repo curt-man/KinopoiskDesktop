@@ -100,19 +100,20 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("MovieId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeSpan?>("SyncPeriod")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("SyncedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("Countries");
                 });
@@ -129,19 +130,20 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                     b.Property<DateTime?>("DeletedAt")
                         .HasColumnType("TEXT");
 
-                    b.Property<int?>("MovieId")
-                        .HasColumnType("INTEGER");
-
                     b.Property<string>("Name")
                         .IsRequired()
+                        .HasColumnType("TEXT");
+
+                    b.Property<TimeSpan?>("SyncPeriod")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime?>("SyncedAt")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("UpdatedAt")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("Genres");
                 });
@@ -320,20 +322,6 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                     b.Navigation("Movie");
                 });
 
-            modelBuilder.Entity("KinopoiskDesktop.Domain.Models.Country", b =>
-                {
-                    b.HasOne("KinopoiskDesktop.Domain.Models.Movie", null)
-                        .WithMany("Countries")
-                        .HasForeignKey("MovieId");
-                });
-
-            modelBuilder.Entity("KinopoiskDesktop.Domain.Models.Genre", b =>
-                {
-                    b.HasOne("KinopoiskDesktop.Domain.Models.Movie", null)
-                        .WithMany("Genres")
-                        .HasForeignKey("MovieId");
-                });
-
             modelBuilder.Entity("KinopoiskDesktop.Domain.Models.MovieCountry", b =>
                 {
                     b.HasOne("KinopoiskDesktop.Domain.Models.Country", "Country")
@@ -343,7 +331,7 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("KinopoiskDesktop.Domain.Models.Movie", "Movie")
-                        .WithMany()
+                        .WithMany("Countries")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -362,7 +350,7 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                         .IsRequired();
 
                     b.HasOne("KinopoiskDesktop.Domain.Models.Movie", "Movie")
-                        .WithMany()
+                        .WithMany("Genres")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
