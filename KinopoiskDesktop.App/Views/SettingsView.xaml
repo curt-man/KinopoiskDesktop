@@ -13,7 +13,7 @@
             <TextBlock Text="Settings"
                        FontWeight="Bold"
                        FontSize="24" />
-            <TextBlock Text="{Binding CurrentUser.Username}"
+            <TextBlock Text="{Binding CurrentUser.UserName}"
                        FontWeight="Bold"
                        FontSize="16" />
             <Button Width="200"

@@ -36,13 +36,13 @@ namespace KinopoiskDesktop.App.ViewModels
             NavigationService = navigationService;
 			NavigateToHomeCommand = new RelayCommand((_) => NavigationService.NavigateTo<HomeViewModel>(), (_) => true);
 			NavigateToUserLibraryCommand = new RelayCommand(_ => NavigationService.NavigateTo<UserLibraryViewModel>(), (_) => true);
-            NavigateToMovideDetailsCommand = new RelayCommand(movie => NavigationService.NavigateTo<MovieDetailsViewModel>(movie), (_) => true);
+            NavigateToSettingsCommand = new RelayCommand(_ => NavigationService.NavigateTo<SettingsViewModel>(), (_) => true);
             
         }
 
 		public RelayCommand NavigateToHomeCommand { get; set; }
 		public RelayCommand NavigateToUserLibraryCommand { get; set; }
-		public RelayCommand NavigateToMovideDetailsCommand { get; set; }
+		public RelayCommand NavigateToSettingsCommand { get; set; }
 
     }
 }

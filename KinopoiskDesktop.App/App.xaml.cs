@@ -19,6 +19,7 @@ using KinopoiskDesktop.App.ViewModels;
 using KinopoiskDesktop.App.Core;
 using KinopoiskDesktop.Domain.Managers;
 using KinopoiskDesktop.DomainImplementation.Managers;
+using KinopoiskDesktop.Domain.IManagers;
 
 namespace KinopoiskDesktop.App
 {
@@ -42,6 +43,8 @@ namespace KinopoiskDesktop.App
 
                     services.AddScoped<IMovieService, MovieService>();
                     services.AddScoped<IUserService, UserService>();
+                    services.AddScoped<IAuthenticationService, AuthenticationService>();
+                    services.AddScoped<IAuthenticationManager, AuthenticationManager>();
 
                     services.AddScoped<IMovieManager, MovieManager>();
                     services.AddScoped<IAppUserManager, AppUserManager>();
@@ -52,26 +55,26 @@ namespace KinopoiskDesktop.App
                         c.DefaultRequestHeaders.Add("X-API-KEY", kinopoiskApiSettings.ApiKey);
                     });
 
-                    services.AddSingleton<MainView>();
-                    services.AddSingleton<HomeView>();
-                    services.AddSingleton<UserLibraryView>();
-                    services.AddSingleton<MovieDetailsView>();
-                    services.AddSingleton<SettingsView>();
-                    services.AddSingleton<LoginView>();
-                    services.AddSingleton<RegisterView>();
+                    services.AddScoped<MainView>();
+                    services.AddScoped<HomeView>();
+                    services.AddScoped<UserLibraryView>();
+                    services.AddScoped<MovieDetailsView>();
+                    services.AddScoped<SettingsView>();
+                    services.AddScoped<LoginView>();
+                    services.AddScoped  <RegisterView>();
 
-                    services.AddSingleton<MainViewModel>();
-                    services.AddSingleton<HomeViewModel>();
-                    services.AddSingleton<UserLibraryViewModel>();
-                    services.AddSingleton<MovieDetailsViewModel>();
-                    services.AddSingleton<SettingsViewModel>();
-                    services.AddSingleton<LoginViewModel>();
-                    services.AddSingleton<RegisterViewModel>();
+                    services.AddScoped<MainViewModel>();
+                    services.AddScoped<HomeViewModel>();
+                    services.AddScoped<UserLibraryViewModel>();
+                    services.AddScoped<MovieDetailsViewModel>();
+                    services.AddScoped  <SettingsViewModel>();
+                    services.AddScoped<LoginViewModel>();
+                    services.AddScoped<RegisterViewModel>();
 
 
-                    services.AddSingleton<IViewModelFactory, ViewModelFactory>();
-                    services.AddSingleton<INavigationService, NavigationService>();
-                    services.AddSingleton<IApplicationDbContext, ApplicationDbContext>();
+                    services.AddScoped<IViewModelFactory, ViewModelFactory>();
+                    services.AddScoped<INavigationService, NavigationService>();
+                    services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
                 })
                 .Build();
         }

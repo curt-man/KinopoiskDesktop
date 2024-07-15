@@ -5,7 +5,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KinopoiskDesktop.Domain.Helpers
+namespace KinopoiskDesktop.DomainImplementation.Helpers
 {
     public static class PasswordHelper
     {

@@ -12,8 +12,8 @@
                     VerticalAlignment="Center">
             <TextBox Width="200"
                      Text="{Binding Username}" />
-            <PasswordBox Width="200"
-                         Password="{Binding Password, Mode=TwoWay}" />
+            <TextBox Width="200"
+                     Text="{Binding Password, Mode=TwoWay}" />
             <Button Width="200"
                     Content="Register"
                     Command="{Binding RegisterCommand}" />

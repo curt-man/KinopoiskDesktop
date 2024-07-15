@@ -1,4 +1,5 @@
 ﻿using KinopoiskDesktop.App.Services.IService;
+using KinopoiskDesktop.Domain.IManagers;
 using KinopoiskDesktop.Domain.Models;
 using System;
 using System.Collections.Generic;
@@ -10,27 +11,39 @@ namespace KinopoiskDesktop.App.Services
 {
     public class AuthenticationService : IAuthenticationService
     {
-        private AppUser _currentUser;
 
-        public AppUser CurrentUser
+        private readonly IAuthenticationManager _authenticationManager;
+
+        public AuthenticationService(IAuthenticationManager authenticationManager)
         {
-            get { return _currentUser; }
-            private set { _currentUser = value; }
+            _authenticationManager = authenticationManager;
         }
 
-        public Task<bool> Login(string login, string password)
+        public AppUser CurrentUser => _authenticationManager.CurrentUser;
+
+        public async Task<bool> Login(string login, string password)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
+                return false;
+            if (CurrentUser != null)
+                return false;
+
+            return await _authenticationManager.Login(login, password);
         }
 
-        public Task<bool> Logout()
+        public async Task<bool> Logout()
         {
-            throw new NotImplementedException();
+            return await _authenticationManager.Logout();
         }
 
-        public Task<bool> Register(string login, string password)
+        public async Task<bool> Register(string login, string password)
         {
-            throw new NotImplementedException();
+            if (string.IsNullOrWhiteSpace(login) || string.IsNullOrWhiteSpace(password))
+                return false;
+            if (CurrentUser != null)
+                return false;
+
+            return await _authenticationManager.Register(login, password);
         }
     }
 }

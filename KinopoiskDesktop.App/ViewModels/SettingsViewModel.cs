@@ -15,7 +15,17 @@ namespace KinopoiskDesktop.App.ViewModels
         private readonly IAuthenticationService _authenticationService;
         private readonly INavigationService _navigationService;
 
-        public AppUser CurrentUser => _authenticationService.CurrentUser;
+        private AppUser _currentUser;
+
+        public AppUser CurrentUser
+        {
+            get { return _authenticationService.CurrentUser; }
+            set
+            {
+                OnPropertyChanged();
+            }
+        }
+
 
         public ICommand LogoutCommand { get; }
         public ICommand NavigateToRegisterCommand { get; }
@@ -30,12 +40,12 @@ namespace KinopoiskDesktop.App.ViewModels
         {
             _authenticationService = authenticationService;
             _navigationService = navigationService;
-            LogoutCommand = new RelayCommand(async _ => await Logout(), _ => CanExecute());
-            NavigateToLoginCommand = new RelayCommand(_ => _navigationService.NavigateTo<LoginViewModel>(), _ => CanExecute());
-            NavigateToRegisterCommand = new RelayCommand(_ => _navigationService.NavigateTo<RegisterViewModel>(), _ => CanExecute());
+            LogoutCommand = new RelayCommand(async _ => await Logout(), _ => IsAuthenticated());
+            NavigateToLoginCommand = new RelayCommand(_ => _navigationService.NavigateTo<LoginViewModel>(), _ => !IsAuthenticated());
+            NavigateToRegisterCommand = new RelayCommand(_ => _navigationService.NavigateTo<RegisterViewModel>(), _ => !IsAuthenticated());
         }
 
-        private bool CanExecute()
+        private bool IsAuthenticated()
         {
             return CurrentUser != null;
         }
@@ -43,6 +53,7 @@ namespace KinopoiskDesktop.App.ViewModels
         private async Task Logout()
         {
             await _authenticationService.Logout();
+            CurrentUser = _authenticationService.CurrentUser;
         }
     }
 
