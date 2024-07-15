@@ -3,6 +3,7 @@ using KinopoiskDesktop.App.Services;
 using KinopoiskDesktop.App.Services.IService;
 using KinopoiskDesktop.Domain.Enums;
 using KinopoiskDesktop.Domain.Models;
+using KinopoiskDesktop.Domain.SearchFilters;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -53,13 +54,36 @@ namespace KinopoiskDesktop.App.ViewModels
             _navigationService = navigationService;
             MovieSelectedCommand = new RelayCommand((movie)=>_navigationService.NavigateTo<MovieDetailsViewModel>(movie), _=>true);
 
+            SyncFromApi();
             LoadMovies();
 
         }
 
+        private async void SyncFromApi()
+        {
+            await _movieService.SyncWithApiAsync();
+        }
+
         private async void LoadMovies()
         {
-            var movies = await _movieService.GetAllMoviesAsync();
+            var filter = new MovieFilter
+            {
+                Countries = [1],
+                Genres = [1],
+                Order = OrderTypeFilter.YEAR,
+                Type = MovieTypeFilter.TV_SERIES,
+                RatingFrom = 4.7,
+                RatingTo = 5.7,
+                YearFrom = 2012,
+                YearTo = 2014,
+                ImdbId = null,
+                Keyword = null,
+                Page = 1,
+                PageSize = 20
+            };
+
+            var movies = await _movieService.GetMoviesByFilterAsync(filter);
+            Movies.Clear();
             foreach (var movie in movies)
             {
                 Movies.Add(movie);
@@ -84,14 +108,8 @@ namespace KinopoiskDesktop.App.ViewModels
                             NameRu = "Попкульт",
                             NameEn = null,
                             NameOriginal = null,
-                            Countries = new List<Country>()
-                            {
-                                new Country() { Name = "Россия" }
-                            },
-                            Genres = new List<Genre>()
-                            {
-                                new Genre() { Name = "документальный" }
-                            },
+                            Countries = new List<MovieCountry> { new MovieCountry { Country = new Country { Name = "Россия" } }},
+                            Genres = new List<MovieGenre> { new MovieGenre { Genre = new Genre { Name = "музыка" } }},
                             RatingKinopoisk = 9.4,
                             RatingImdb = null,
                             Year = 2022,
@@ -112,14 +130,17 @@ namespace KinopoiskDesktop.App.ViewModels
                             NameRu = null,
                             NameEn = null,
                             NameOriginal = "BTS: Blood Sweat & Tears",
-                            Countries = new List<Country>
-                            {
-                                new Country { Name = "Корея Южная" }
-                            },
-                            Genres = new List<Genre>
-                            {
-                                new Genre { Name = "музыка" },
-                                new Genre { Name = "короткометражка" }
+                            Countries = new List<MovieCountry> { new MovieCountry { Country = new Country { Name = "Россия" } }},
+
+                            Genres = new List<MovieGenre> {
+                                new MovieGenre
+                                {
+                                    Genre = new Genre { Name = "музыка" },
+                                },
+                                new MovieGenre
+                                {
+                                    Genre = new Genre { Name = "короткометражка" }
+                                }
                             },
                             RatingKinopoisk = 9.4,
                             RatingImdb = null,
@@ -141,14 +162,14 @@ namespace KinopoiskDesktop.App.ViewModels
                             NameRu = "Hot Wheels. Мегатрасса",
                             NameEn = null,
                             NameOriginal = "Team Hot Wheels: Build the Epic Race",
-                            Countries = new List<Country>
+                            Countries = new List<MovieCountry>
                             {
-                                new Country { Name = "США" }
+                                new MovieCountry { Country = new Country { Name = "США" } }
                             },
-                            Genres = new List<Genre>
+                            Genres = new List<MovieGenre>
                             {
-                                new Genre { Name = "мультфильм" },
-                                new Genre { Name = "детский" }
+                                new MovieGenre { Genre = new Genre { Name = "мультфильм" } },
+                                new MovieGenre { Genre = new Genre { Name = "детский" } }
                             },
                             RatingKinopoisk = 9.3,
                             RatingImdb = 6.2,
@@ -170,16 +191,16 @@ namespace KinopoiskDesktop.App.ViewModels
                             NameRu = "Лапша и булочка",
                             NameEn = null,
                             NameOriginal = "Noodle and Bun",
-                            Countries = new List<Country>
+                            Countries = new List<MovieCountry>
                             {
-                                new Country { Name = "ЮАР" }
+                                new MovieCountry { Country = new Country { Name = "ЮАР" } }
                             },
-                            Genres = new List<Genre>
+                            Genres = new List<MovieGenre>
                             {
-                                new Genre { Name = "приключения" },
-                                new Genre { Name = "комедия" },
-                                new Genre { Name = "мультфильм" },
-                                new Genre { Name = "семейный" }
+                                new MovieGenre { Genre = new Genre { Name = "приключения" } },
+                                new MovieGenre { Genre = new Genre { Name = "комедия" } },
+                                new MovieGenre { Genre = new Genre { Name = "мультфильм" } },
+                                new MovieGenre { Genre = new Genre { Name = "семейный" } }
                             },
                             RatingKinopoisk = 9.3,
                             RatingImdb = 9.2,
@@ -201,14 +222,14 @@ namespace KinopoiskDesktop.App.ViewModels
                             NameRu = "Hot Wheels. За гранью воображения",
                             NameEn = null,
                             NameOriginal = "Team Hot Wheels: The Skills to Thrill",
-                            Countries = new List<Country>
+                            Countries = new List<MovieCountry>
                             {
-                                new Country { Name = "США" }
+                                new MovieCountry { Country = new Country { Name = "США" } }
                             },
-                            Genres = new List<Genre>
+                            Genres = new List<MovieGenre>
                             {
-                                new Genre { Name = "мультфильм" },
-                                new Genre { Name = "детский" }
+                                new MovieGenre { Genre = new Genre { Name = "мультфильм" } },
+                                new MovieGenre { Genre = new Genre { Name = "детский" } }
                             },
                             RatingKinopoisk = 9.3,
                             RatingImdb = 6.9,
@@ -230,15 +251,15 @@ namespace KinopoiskDesktop.App.ViewModels
                             NameRu = "Герои Энвелла",
                             NameEn = null,
                             NameOriginal = null,
-                            Countries = new List<Country>
+                            Countries = new List<MovieCountry>
                             {
-                                new Country { Name = "Россия" }
+                                new MovieCountry { Country = new Country { Name = "Россия" } }
                             },
-                            Genres = new List<Genre>
+                            Genres = new List<MovieGenre>
                             {
-                                new Genre { Name = "фантастика" },
-                                new Genre { Name = "мультфильм" },
-                                new Genre { Name = "детский" }
+                                new MovieGenre { Genre = new Genre { Name = "фантастика" } },
+                                new MovieGenre { Genre = new Genre { Name = "мультфильм" } },
+                                new MovieGenre { Genre = new Genre { Name = "детский" } }
                             },
                             RatingKinopoisk = 9.3,
                             RatingImdb = null,
@@ -260,13 +281,13 @@ namespace KinopoiskDesktop.App.ViewModels
                             NameRu = "Космос",
                             NameEn = null,
                             NameOriginal = "",
-                            Countries = new List<Country>
+                            Countries = new List<MovieCountry>
                             {
-                                new Country { Name = "США" }
+                                new MovieCountry { Country = new Country { Name = "США" } }
                             },
-                            Genres = new List<Genre>
+                            Genres = new List<MovieGenre>
                             {
-                                new Genre { Name = "документальный" }
+                                new MovieGenre { Genre = new Genre { Name = "документальный" } }
                             },
                             RatingKinopoisk = 9.3,
                             RatingImdb = null,
@@ -288,13 +309,13 @@ namespace KinopoiskDesktop.App.ViewModels
                             NameRu = "Счастливые люди",
                             NameEn = null,
                             NameOriginal = null,
-                            Countries = new List<Country>
+                            Countries = new List<MovieCountry>
                             {
-                                new Country { Name = "Россия" }
+                                new MovieCountry { Country = new Country { Name = "Россия" } }
                             },
-                            Genres = new List<Genre>
+                            Genres = new List<MovieGenre>
                             {
-                                new Genre { Name = "документальный" }
+                                new MovieGenre { Genre = new Genre { Name = "документальный" } }
                             },
                             RatingKinopoisk = 9.2,
                             RatingImdb = 8.7,
@@ -316,14 +337,14 @@ namespace KinopoiskDesktop.App.ViewModels
                             NameRu = "Гамильтон",
                             NameEn = null,
                             NameOriginal = "Hamilton's America",
-                            Countries = new List<Country>
+                            Countries = new List<MovieCountry>
                             {
-                                new Country { Name = "США" }
+                                new MovieCountry { Country = new Country { Name = "США" } }
                             },
-                            Genres = new List<Genre>
+                            Genres = new List<MovieGenre>
                             {
-                                new Genre { Name = "биография" },
-                                new Genre { Name = "мюзикл" }
+                                new MovieGenre { Genre = new Genre { Name = "биография" } },
+                                new MovieGenre { Genre = new Genre { Name = "мюзикл" } }
                             },
                             RatingKinopoisk = 9.2,
                             RatingImdb = 8.3,
@@ -332,9 +353,36 @@ namespace KinopoiskDesktop.App.ViewModels
                             PosterUrl = "https://kinopoiskapiunofficial.tech/images/posters/kp/1003587.jpg",
                             PosterUrlPreview = "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1003587.jpg"
                         }
+                    },
+                    new AppUserMovie
+                    {
+                        IsFavorite = false,
+                        IsWatched = false,
+                        Rating = null,
+                        Movie = new Movie
+                        {
+                            KinopoiskId = 1201206,
+                            ImdbId = null,
+                            NameRu = null,
+                            NameEn = null,
+                            NameOriginal = "BTS: Blood Sweat & Tears",
+                            Countries = new List<MovieCountry>
+                            {
+                                new MovieCountry { Country = new Country { Name = "Россия" } }
+                            },
+                            Genres = new List<MovieGenre>
+                            {
+                                new MovieGenre { Genre = new Genre { Name = "музыка" } },
+                                new MovieGenre { Genre = new Genre { Name = "короткометражка" } }
+                            },
+                            RatingKinopoisk = 9.4,
+                            RatingImdb = null,
+                            Year = 2016,
+                            Type = FilmType.VIDEO,
+                            PosterUrl = "https://kinopoiskapiunofficial.tech/images/posters/kp/1201206.jpg",
+                            PosterUrlPreview = "https://kinopoiskapiunofficial.tech/images/posters/kp_small/1201206.jpg"
+                        }
                     }
-
-
                 };
 
                 foreach (var movie in seedMovies)

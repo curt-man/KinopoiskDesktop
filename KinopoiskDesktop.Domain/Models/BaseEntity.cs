@@ -10,7 +10,7 @@ namespace KinopoiskDesktop.Domain.Models
     public class BaseEntity<T>
     {
         [Key]
-        public T Id { get; set; }
+        public virtual T Id { get; set; }
 
         [Required]
         public DateTime CreatedAt { get; set; }

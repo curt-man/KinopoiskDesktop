@@ -1,6 +1,9 @@
 ﻿using KinopoiskDesktop.DataAccess;
+using KinopoiskDesktop.Domain.Enums;
+using KinopoiskDesktop.Domain.IManagers;
 using KinopoiskDesktop.Domain.Managers;
 using KinopoiskDesktop.Domain.Models;
+using KinopoiskDesktop.Domain.SearchFilters;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -76,14 +79,92 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             throw new NotImplementedException();
         }
 
-        public Task SyncMoviesWithApiAsync(IEnumerable<Movie> apiMovies)
+
+
+        public async Task SyncWithApiAsync<TEntity, TId>(IEnumerable<TEntity> apiEntities)
+            where TEntity : BaseEntity<TId>, ISyncableEntity<TId>
         {
-            var moviesToUpdate = _context.Movies.Intersect(apiMovies);
-            var moviesToInsert = apiMovies.Except(moviesToUpdate);
+            var apiEntitiesIds = apiEntities.Select(e => e.SyncProperty).ToList();
+
+            var existingEntities = await _context.DbContext.Set<TEntity>()
+                .ToListAsync();
+
+            var existingEntityDict = existingEntities
+                .Where(e => apiEntitiesIds.Contains(e.SyncProperty))
+                .ToDictionary(e => e.SyncProperty);
+
+            var entitiesToUpdate = new List<TEntity>();
+            var entitiesToInsert = new List<TEntity>();
+
+            foreach (var apiEntity in apiEntities)
+            {
+                apiEntity.SyncedAt = DateTime.UtcNow;
+                apiEntity.SyncPeriod = TimeSpan.FromMinutes(60);
+
+                if (existingEntityDict.TryGetValue(apiEntity.SyncProperty, out var existingEntity))
+                {
+                    existingEntity.UpdatedAt = DateTime.UtcNow;
+                    entitiesToUpdate.Add(existingEntity);
+                }
+                else
+                {
+                    apiEntity.CreatedAt = DateTime.UtcNow;
+                    entitiesToInsert.Add(apiEntity);
+                }
+            }
+
+            _context.DbContext.Set<TEntity>().UpdateRange(entitiesToUpdate);
+            _context.DbContext.Set<TEntity>().AddRange(entitiesToInsert);
+
+            await _context.DbContext.SaveChangesAsync();
+        }
+
+        public async Task SyncMoviesWithApiAsync(IEnumerable<Movie> apiMovies)
+        {
+            var apiMovieIds = apiMovies.Select(m => m.KinopoiskId).ToList();
+
+            var existingMovies = await _context.Movies
+                .Where(m => apiMovieIds.Contains(m.KinopoiskId))
+                .ToListAsync();
+
+            var existingMovieDict = existingMovies.ToDictionary(m => m.KinopoiskId);
+
+            var moviesToUpdate = new List<Movie>();
+            var moviesToInsert = new List<Movie>();
+
+            foreach (var apiMovie in apiMovies)
+            {
+                if (existingMovieDict.TryGetValue(apiMovie.KinopoiskId, out var existingMovie))
+                {
+                    existingMovie.UpdatedAt = DateTime.UtcNow;
+                    existingMovie.SyncedAt = DateTime.UtcNow;
+                    existingMovie.SyncPeriod = TimeSpan.FromMinutes(3);
+                    moviesToUpdate.Add(existingMovie);
+                }
+                else
+                {
+                    apiMovie.SyncedAt = DateTime.UtcNow;
+                    apiMovie.SyncPeriod = TimeSpan.FromMinutes(3);
+                    apiMovie.CreatedAt = DateTime.UtcNow;
+                    moviesToInsert.Add(apiMovie);
+                }
+            }
+
             _context.Movies.UpdateRange(moviesToUpdate);
             _context.Movies.AddRange(moviesToInsert);
-            _context.DbContext.SaveChanges();
-            return Task.CompletedTask;
+
+            await _context.DbContext.SaveChangesAsync();
+
+        }
+
+        public List<Country> GetCountries()
+        {
+            return _context.Countries.ToList();
+        }
+
+        public List<Genre> GetGenres()
+        {
+            return _context.Genres.ToList();
         }
     }
 }

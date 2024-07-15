@@ -1,4 +1,5 @@
 ﻿using KinopoiskDesktop.Domain.Models;
+using KinopoiskDesktop.Domain.SearchFilters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,8 @@ namespace KinopoiskDesktop.Domain.Managers
 {
     public interface IMovieManager
     {
-        Task<IEnumerable<AppUserMovie>> GetMoviesAsync(IEnumerable<Movie> apiMovies);
+        Task<IEnumerable<AppUserMovie>> GetUserMoviesForApi(IEnumerable<Movie> apiMovies);
+        Task<IEnumerable<AppUserMovie>> GetUserMoviesByFilter(MovieFilter filter);
         Task<AppUserMovie> GetMovieByIdAsync(int id);
         Task<AppUserMovie> GetMovieByNameAsync(string name);
 
@@ -23,5 +25,9 @@ namespace KinopoiskDesktop.Domain.Managers
 
         Task RateMovieAsync(AppUserMovie movie);
         Task SyncMoviesWithApiAsync(IEnumerable<Movie> apiMovies);
+        Task SyncWithApiAsync<TEntity, TId>(IEnumerable<TEntity> apiCountries) where TEntity : BaseEntity<TId>, ISyncableEntity<TId>;
+
+        List<Country> GetCountries();
+        List<Genre> GetGenres();
     }
 }

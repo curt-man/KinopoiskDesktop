@@ -6,9 +6,10 @@ using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.Domain.Models
 {
-    public interface ISyncableEntity
+    public interface ISyncableEntity<T>
     {
         public DateTime? SyncedAt { get; set; }
         public TimeSpan? SyncPeriod { get; set; }
+        public T SyncProperty { get; }
     }
 }

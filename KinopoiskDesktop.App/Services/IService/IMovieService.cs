@@ -1,4 +1,6 @@
 ﻿using KinopoiskDesktop.Domain.Models;
+using KinopoiskDesktop.Domain.SearchFilters;
+using KinopoiskDesktop.Integrations.KinopoiskUnofficialApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,6 +24,7 @@ namespace KinopoiskDesktop.App.Services.IService
         Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync();
 
         Task RateMovieAsync(AppUserMovie movie);
+        Task SyncWithApiAsync();
 
 
         // Here should be more methods. Method to find movie by filters. Create a filter class and pass it as a parameter.

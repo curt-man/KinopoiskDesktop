@@ -18,9 +18,7 @@ namespace KinopoiskDesktop.Domain.Models
         public byte[] PasswordSalt { get; set; }
         public DateTime? LoggedAt { get; set; }
 
-
         public ICollection<AppUserMovie>? AppUserMovies { get; set; }
-
 
     }
 }

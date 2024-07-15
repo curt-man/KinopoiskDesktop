@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,31 +9,29 @@ using KinopoiskDesktop.Domain.Enums;
 
 namespace KinopoiskDesktop.Domain.Models
 {
-    public class Movie : BaseEntity<int>, ISyncableEntity
+    public class Movie : BaseEntity<int>, ISyncableEntity<int>
     {
 
         public int KinopoiskId { get; set; }
 
-        public string KinopoiskHDId { get; set; }
+        public string? KinopoiskHDId { get; set; }
 
-        public string ImdbId { get; set; }
+        public string? ImdbId { get; set; }
 
 
-        public string NameRu { get; set; }
+        public string? NameRu { get; set; }
 
-        public string NameEn { get; set; }
+        public string? NameEn { get; set; }
 
-        public string NameOriginal { get; set; }
+        public string? NameOriginal { get; set; }
 
-        [Required]
-        public string PosterUrl { get; set; }
+        public string? PosterUrl { get; set; }
 
-        [Required]
-        public string PosterUrlPreview { get; set; }
+        public string? PosterUrlPreview { get; set; }
 
-        public string CoverUrl { get; set; }
+        public string? CoverUrl { get; set; }
 
-        public string LogoUrl { get; set; }
+        public string? LogoUrl { get; set; }
 
 
         public int ReviewsCount { get; set; }
@@ -50,29 +49,27 @@ namespace KinopoiskDesktop.Domain.Models
         public int? RatingFilmCriticsVoteCount { get; set; }
 
 
-        [Required]
-        public string WebUrl { get; set; }
+        public string? WebUrl { get; set; }
 
         public int? Year { get; set; }
 
         public int? FilmLength { get; set; }
 
-        public string Slogan { get; set; }
+        public string? Slogan { get; set; }
 
-        public string Description { get; set; }
+        public string? Description { get; set; }
 
-        public string ShortDescription { get; set; }
+        public string? ShortDescription { get; set; }
 
-        public string EditorAnnotation { get; set; }
+        public string? EditorAnnotation { get; set; }
 
         public FilmProductionStatus? ProductionStatus { get; set; }
 
-        [Required]
-        public FilmType Type { get; set; }
+        public FilmType? Type { get; set; }
 
-        public string RatingMpaa { get; set; }
+        public string? RatingMpaa { get; set; }
 
-        public string RatingAgeLimits { get; set; }
+        public string? RatingAgeLimits { get; set; }
 
         public int? StartYear { get; set; }
 
@@ -88,12 +85,14 @@ namespace KinopoiskDesktop.Domain.Models
         public DateTime? SyncedAt   { get; set; }
         public TimeSpan? SyncPeriod { get; set; }
 
-        public ICollection<Country> Countries { get; set; } = new HashSet<Country>();
+        public ICollection<MovieCountry>? Countries { get; set; }
 
-        public ICollection<Genre> Genres { get; set; } = new HashSet<Genre>();
+        public ICollection<MovieGenre>? Genres { get; set; }
 
-        public ICollection<AppUserMovie> MovieAppUsers { get; set; }
+        public ICollection<AppUserMovie>? MovieAppUsers { get; set; }
 
+        [NotMapped]
+        public int SyncProperty => KinopoiskId;
     }
 
 
