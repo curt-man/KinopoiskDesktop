@@ -6,11 +6,33 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace KinopoiskDesktop.DataAccess.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class Init3 : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "AppUsers",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: true),
+                    LastName = table.Column<string>(type: "TEXT", nullable: true),
+                    SecondName = table.Column<string>(type: "TEXT", nullable: true),
+                    Email = table.Column<string>(type: "TEXT", nullable: true),
+                    UserName = table.Column<string>(type: "TEXT", nullable: false),
+                    PasswordHash = table.Column<byte[]>(type: "BLOB", nullable: false),
+                    PasswordSalt = table.Column<byte[]>(type: "BLOB", nullable: false),
+                    LoggedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    DeletedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_AppUsers", x => x.Id);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Movies",
                 columns: table => new
@@ -62,25 +84,30 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "AppUsers",
+                name: "AppUsersMovies",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
-                    FirstName = table.Column<string>(type: "TEXT", nullable: true),
-                    LastName = table.Column<string>(type: "TEXT", nullable: true),
-                    SecondName = table.Column<string>(type: "TEXT", nullable: true),
-                    Email = table.Column<string>(type: "TEXT", nullable: true),
-                    UserName = table.Column<string>(type: "TEXT", nullable: false),
-                    PasswordHash = table.Column<byte[]>(type: "BLOB", nullable: false),
-                    PasswordSalt = table.Column<byte[]>(type: "BLOB", nullable: false),
-                    LoggedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    CreatedAt = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    UpdatedAt = table.Column<DateTime>(type: "TEXT", nullable: true),
-                    DeletedAt = table.Column<DateTime>(type: "TEXT", nullable: true)
+                    AppUserId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    MovieId = table.Column<int>(type: "INTEGER", nullable: false),
+                    IsFavorite = table.Column<bool>(type: "INTEGER", nullable: false),
+                    IsWatched = table.Column<bool>(type: "INTEGER", nullable: false),
+                    Rating = table.Column<double>(type: "REAL", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Users", x => x.Id);
+                    table.PrimaryKey("PK_AppUsersMovies", x => new { x.AppUserId, x.MovieId });
+                    table.ForeignKey(
+                        name: "FK_AppUsersMovies_AppUsers_AppUserId",
+                        column: x => x.AppUserId,
+                        principalTable: "AppUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_AppUsersMovies_Movies_MovieId",
+                        column: x => x.MovieId,
+                        principalTable: "Movies",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -125,33 +152,6 @@ namespace KinopoiskDesktop.DataAccess.Migrations
                         column: x => x.MovieId,
                         principalTable: "Movies",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "AppUsersMovies",
-                columns: table => new
-                {
-                    AppUserId = table.Column<Guid>(type: "TEXT", nullable: false),
-                    MovieId = table.Column<int>(type: "INTEGER", nullable: false),
-                    IsFavorite = table.Column<bool>(type: "INTEGER", nullable: false),
-                    IsWatched = table.Column<bool>(type: "INTEGER", nullable: false),
-                    Rating = table.Column<double>(type: "REAL", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_AppUsersMovies", x => new { x.AppUserId, x.MovieId });
-                    table.ForeignKey(
-                        name: "FK_AppUsersMovies_Movies_MovieId",
-                        column: x => x.MovieId,
-                        principalTable: "Movies",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_AppUsersMovies_Users_AppUserId",
-                        column: x => x.AppUserId,
-                        principalTable: "AppUsers",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

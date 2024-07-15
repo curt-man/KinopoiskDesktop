@@ -22,8 +22,8 @@ namespace KinopoiskDesktop.App.Extensions
 
         public static void ConfigureLocalDatabase(this IServiceCollection services)
         {
-            var directory = Path.Combine(Directory.GetCurrentDirectory(), "../KinopoiskDesktop.DataAccess/Database");
-            var dbFilePath = Path.Combine(directory, "KinopoiskDesktopDatabase.db");
+            var directory = Path.Combine(Directory.GetCurrentDirectory(), "..\\KinopoiskDesktop.DataAccess\\Database");
+            var dbFilePath = @"C:\Projects\KinopoiskDesktop\KinopoiskDesktop.DataAccess\Database\KinopoiskDesktopDatabase.db";
             var connectionString = @$"Data Source={dbFilePath}";
 
             services.AddDbContext<ApplicationDbContext>(options =>

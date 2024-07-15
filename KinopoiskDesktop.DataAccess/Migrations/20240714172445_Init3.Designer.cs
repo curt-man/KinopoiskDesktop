@@ -3,6 +3,7 @@ using System;
 using KinopoiskDesktop.DataAccess;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace KinopoiskDesktop.DataAccess.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class KinopoiskDbContextModelSnapshot : ModelSnapshot
+    [Migration("20240714172445_Init3")]
+    partial class Init3
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "8.0.7");
@@ -319,17 +322,21 @@ namespace KinopoiskDesktop.DataAccess.Migrations
 
             modelBuilder.Entity("KinopoiskDesktop.Domain.Models.AppUserMovie", b =>
                 {
-                    b.HasOne("KinopoiskDesktop.Domain.Models.AppUser", null)
+                    b.HasOne("KinopoiskDesktop.Domain.Models.AppUser", "AppUser")
                         .WithMany("AppUserMovies")
                         .HasForeignKey("AppUserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("KinopoiskDesktop.Domain.Models.Movie", null)
+                    b.HasOne("KinopoiskDesktop.Domain.Models.Movie", "Movie")
                         .WithMany("MovieAppUsers")
                         .HasForeignKey("MovieId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("AppUser");
+
+                    b.Navigation("Movie");
                 });
 
             modelBuilder.Entity("KinopoiskDesktop.Domain.Models.Country", b =>
