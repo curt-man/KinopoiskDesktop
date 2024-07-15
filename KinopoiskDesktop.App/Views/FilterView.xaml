@@ -7,19 +7,67 @@
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:KinopoiskDesktop.App.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:FilterViewModel, IsDesignTimeCreatable=True}">
-    <StackPanel Orientation="Vertical">
-        <!-- Add controls for each filter property -->
-        <TextBox Text="{Binding Keyword}" />
-        <TextBox Text="{Binding ImdbId}" />
+
+    <StackPanel Orientation="Vertical"
+                Margin="10">
+        <Label Content="Keyword" />
+        <TextBox Text="{Binding Keyword}"
+                  />
+
+        <Label Content="IMDb ID" />
+        <TextBox Text="{Binding ImdbId}"
+                  />
+
+        <Label Content="Order Type" />
         <ComboBox ItemsSource="{Binding OrderTypes}"
-                  SelectedItem="{Binding Order}" />
+                  SelectedItem="{Binding SelectedOrder}"
+                   />
+
+        <Label Content="Movie Type" />
         <ComboBox ItemsSource="{Binding MovieTypes}"
-                  SelectedItem="{Binding Type}" />
-        <TextBox Text="{Binding RatingFrom}" />
-        <TextBox Text="{Binding RatingTo}" />
-        <TextBox Text="{Binding YearFrom}" />
-        <TextBox Text="{Binding YearTo}" />
+                  SelectedItem="{Binding SelectedType}"
+                   />
+
+        <Label Content="Countries" />
+        <ComboBox ItemsSource="{Binding Countries}"
+                  >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Item.Name}"
+                              IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label Content="Genres" />
+        <ComboBox ItemsSource="{Binding Genres}"
+                  >
+            <ComboBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox Content="{Binding Item.Name}"
+                              IsChecked="{Binding IsSelected, Mode=TwoWay}" />
+                </DataTemplate>
+            </ComboBox.ItemTemplate>
+        </ComboBox>
+
+        <Label Content="Rating From" />
+        <TextBox Text="{Binding RatingFrom}"
+                  />
+
+        <Label Content="Rating To" />
+        <TextBox Text="{Binding RatingTo}"
+                  />
+
+        <Label Content="Year From" />
+        <TextBox Text="{Binding YearFrom}"
+                  />
+
+        <Label Content="Year To" />
+        <TextBox Text="{Binding YearTo}"
+                  />
+
         <Button Content="Apply Filters"
-                Command="{Binding ApplyFiltersCommand}" />
+                Command="{Binding ApplyFiltersCommand}"
+                Margin="0,10,0,0" />
     </StackPanel>
 </UserControl>

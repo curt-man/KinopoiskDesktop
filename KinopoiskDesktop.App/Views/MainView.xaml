@@ -7,8 +7,10 @@
         xmlns:views="clr-namespace:KinopoiskDesktop.App.Views"
         mc:Ignorable="d"
         Title="MainView"
-        Height="450"
+        Height="700"
         Width="600"
+        MinHeight="700"
+        MinWidth="600"
         xmlns:vm="clr-namespace:KinopoiskDesktop.App.ViewModels"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}">
     <Grid>
@@ -17,8 +19,8 @@
             <ColumnDefinition Width="10*" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="2*" />
-            <RowDefinition Height="3*" />
+            <RowDefinition Height="1*" />
+            <RowDefinition Height="4*" />
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0">

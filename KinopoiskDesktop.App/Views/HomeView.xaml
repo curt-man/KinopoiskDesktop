@@ -4,15 +4,21 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:KinopoiskDesktop.App.Views"
+             xmlns:conv="clr-namespace:KinopoiskDesktop.App.Converters"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              Background="#f2f2f2"
              xmlns:vm="clr-namespace:KinopoiskDesktop.App.ViewModels"
              d:DataContext="{d:DesignInstance Type=vm:HomeViewModel, IsDesignTimeCreatable=True}">
+    <UserControl.Resources>
+        <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
     <Grid>
         <ListBox ItemsSource="{Binding Movies}"
                  HorizontalContentAlignment="Stretch"
                  SelectedItem="{Binding SelectedMovie}">
             <ListBox.ItemTemplate>
+                <!--TODO: Move movie template to separate control-->
                 <DataTemplate>
                     <Border BorderThickness="1"
                             BorderBrush="Gray"
@@ -45,9 +51,22 @@
                                     <TextBlock Text="{Binding Movie.RatingKinopoisk}"
                                                Foreground="Gray" />
                                 </StackPanel>
-                                <Button Content="Details"
-                                        Command="{Binding DataContext.MovieSelectedCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
-                                        CommandParameter="{Binding}" />
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="0 10 0 0">
+                                    <Button Content="Details"
+                                            Margin="0 0 10 0"
+                                            Width="100"
+                                            Command="{Binding DataContext.MovieSelectedCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                            CommandParameter="{Binding}" />
+                                    <Button Style="{StaticResource IconButton}"
+                                            Margin="0 0 10 0"
+                                            Content="{Binding IsFavorite, Converter={StaticResource BooleanToFavoriteIconConverter}}"
+                                            Visibility="{Binding DataContext.IsUserAuthenticated, RelativeSource={RelativeSource AncestorType=ListBox}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                    <Button Style="{StaticResource IconButton}"
+                                            Margin="0 0 10 0"
+                                            Content="{Binding IsWatched, Converter={StaticResource BooleanToWatchedIconConverter}}"
+                                            Visibility="{Binding DataContext.IsUserAuthenticated, RelativeSource={RelativeSource AncestorType=ListBox}, Converter={StaticResource BooleanToVisibilityConverter}}" />
+                                </StackPanel>
                             </StackPanel>
                         </Grid>
                     </Border>

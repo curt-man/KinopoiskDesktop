@@ -18,6 +18,8 @@ namespace KinopoiskDesktop.Domain.SearchFilters
         public int? YearTo { get; set; }
         public string? ImdbId { get; set; }
         public string? Keyword { get; set; }
+        public bool? IsFavorite { get; set; }
+        public bool? ForCurrentUser { get; set; }
         public int? Page { get; set; }
         public int? PageSize { get; set; }
     }

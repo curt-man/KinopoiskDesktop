@@ -1,6 +1,5 @@
 ﻿using KinopoiskDesktop.Domain.Models;
 using KinopoiskDesktop.Domain.SearchFilters;
-using KinopoiskDesktop.Integrations.KinopoiskUnofficialApi;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,7 +14,7 @@ namespace KinopoiskDesktop.App.Services.IService
 
         Task AddToFavoritesAsync(AppUserMovie movie);
         Task RemoveFromFavoritesAsync(AppUserMovie movie);
-        Task<IEnumerable<AppUserMovie>> GetFavoritesAsync();
+        Task<IEnumerable<AppUserMovie>> GetFavoritesByFilterAsync(MovieFilter? filter = null);
 
         Task MarkAsWatchedAsync(AppUserMovie movie);
         Task MarkAsUnwatchedAsync(AppUserMovie movie);
@@ -25,7 +24,8 @@ namespace KinopoiskDesktop.App.Services.IService
 
         Task SyncWithApiAsync();
 
+        List<Country> GetCountries();
+        List<Genre> GetGenres();
 
-        // Here should be more methods. Method to find movie by filters. Create a filter class and pass it as a parameter.
     }
 }

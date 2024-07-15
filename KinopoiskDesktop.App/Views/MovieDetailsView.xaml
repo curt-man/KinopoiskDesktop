@@ -5,9 +5,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:local="clr-namespace:KinopoiskDesktop.App.Views"
              xmlns:vm="clr-namespace:KinopoiskDesktop.App.ViewModels"
+             xmlns:conv="clr-namespace:KinopoiskDesktop.App.Converters"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=vm:MovieDetailsViewModel, IsDesignTimeCreatable=True}">
+
+    <UserControl.Resources>
+        <conv:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    </UserControl.Resources>
 
     <Grid Background="#f2f2f2">
         <Grid.ColumnDefinitions>
@@ -44,13 +49,16 @@
                         Margin="0,10,0,10">
                 <Button Style="{StaticResource IconButton}"
                         Command="{Binding ToggleFavoriteCommand}"
-                        Content="{Binding SelectedMovie.IsFavorite, Converter={StaticResource BooleanToFavoriteIconConverter}}" />
+                        Content="{Binding SelectedMovie.IsFavorite, Converter={StaticResource BooleanToFavoriteIconConverter}}"
+                        Visibility="{Binding IsUserAuthenticated, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <Button Style="{StaticResource IconButton}"
                         Command="{Binding ToggleWatchedCommand}"
-                        Content="{Binding SelectedMovie.IsWatched, Converter={StaticResource BooleanToWatchedIconConverter}}" />
+                        Content="{Binding SelectedMovie.IsWatched, Converter={StaticResource BooleanToWatchedIconConverter}}"
+                        Visibility="{Binding IsUserAuthenticated, Converter={StaticResource BooleanToVisibilityConverter}}" />
                 <Button Style="{StaticResource IconButton}"
                         Command="{Binding RateMovieCommand}"
-                        Content="StarOutline" />
+                        Content="StarOutline"
+                        Visibility="{Binding IsUserAuthenticated, Converter={StaticResource BooleanToVisibilityConverter}}" />
             </StackPanel>
         </StackPanel>
     </Grid>

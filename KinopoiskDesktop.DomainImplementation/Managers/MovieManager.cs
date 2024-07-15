@@ -30,6 +30,13 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             {
                 var filteredMoviesQuery = _context.Movies.AsQueryable();
 
+                if (filter.IsFavorite != null || filter.IsFavorite != false)
+                {
+                    filteredMoviesQuery = filteredMoviesQuery.Include(x => x.MovieAppUsers.Where(m => m.IsFavorite))
+                        .Where(x=>x.MovieAppUsers != null && x.MovieAppUsers.Count != 0);
+                }
+
+
                 if (filter.Countries != null && filter.Countries.Any())
                 {
                     filteredMoviesQuery = filteredMoviesQuery.Include(x=>x.Countries).Where(m => m.Countries.Any(c => filter.Countries.Contains(c.CountryId)));
@@ -127,6 +134,7 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
                 }
 
 
+
                 var filteredMovies = await filteredMoviesQuery.ToListAsync();
 
                 var userMovies = filteredMovies.Select(m => new AppUserMovie
@@ -137,6 +145,12 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
                     IsWatched = m.MovieAppUsers?.FirstOrDefault()?.IsWatched ?? false,
                     Rating = m.MovieAppUsers?.FirstOrDefault()?.Rating
                 }).ToList();
+
+
+                if (filter.ForCurrentUser != null || filter.ForCurrentUser != false)
+                {
+                    userMovies = userMovies.Where(x => _authenticationManager.CurrentUserId != null && x.AppUser?.Id == _authenticationManager.CurrentUserId).ToList();
+                }
 
                 return userMovies;
             }

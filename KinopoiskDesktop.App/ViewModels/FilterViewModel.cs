@@ -1,10 +1,10 @@
 ﻿using KinopoiskDesktop.App.Core;
 using KinopoiskDesktop.App.Services.IService;
+using KinopoiskDesktop.Domain.Models;
 using KinopoiskDesktop.Domain.SearchFilters;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
@@ -13,88 +13,62 @@ namespace KinopoiskDesktop.App.ViewModels
     public class FilterViewModel : BaseViewModel
     {
         private readonly IMovieService _movieService;
-        private IEnumerable<int>? _countries;
-        private IEnumerable<int>? _genres;
-        private OrderTypeFilter? _order;
-        private MovieTypeFilter? _type;
-        private double? _ratingFrom;
-        private double? _ratingTo;
-        private int? _yearFrom;
-        private int? _yearTo;
-        private string? _imdbId;
-        private string? _keyword;
-
-        public IEnumerable<int>? Countries
-        {
-            get => _countries;
-            set { _countries = value; OnPropertyChanged(); }
-        }
-
-        public IEnumerable<int>? Genres
-        {
-            get => _genres;
-            set { _genres = value; OnPropertyChanged(); }
-        }
-
-        public OrderTypeFilter? Order
-        {
-            get => _order;
-            set { _order = value; OnPropertyChanged(); }
-        }
-
-        public MovieTypeFilter? Type
-        {
-            get => _type;
-            set { _type = value; OnPropertyChanged(); }
-        }
-
-        public double? RatingFrom
-        {
-            get => _ratingFrom;
-            set { _ratingFrom = value; OnPropertyChanged(); }
-        }
-
-        public double? RatingTo
-        {
-            get => _ratingTo;
-            set { _ratingTo = value; OnPropertyChanged(); }
-        }
-
-        public int? YearFrom
-        {
-            get => _yearFrom;
-            set { _yearFrom = value; OnPropertyChanged(); }
-        }
-
-        public int? YearTo
-        {
-            get => _yearTo;
-            set { _yearTo = value; OnPropertyChanged(); }
-        }
-
-        public string? ImdbId
-        {
-            get => _imdbId;
-            set { _imdbId = value; OnPropertyChanged(); }
-        }
-
-        public string? Keyword
-        {
-            get => _keyword;
-            set { _keyword = value; OnPropertyChanged(); }
-        }
-
-        public ICommand ApplyFiltersCommand { get; set; }
 
         public FilterViewModel(IMovieService movieService)
         {
             _movieService = movieService;
             ApplyFiltersCommand = new RelayCommand(async _ => await applyFiltersDelegate(this), _ => true);
+            LoadCountriesAndGenres();
+            PopulateEnums();
         }
 
-        
-        public Func<FilterViewModel, Task> applyFiltersDelegate;
+        public ICommand ApplyFiltersCommand { get; set; }
+        public Func<FilterViewModel, Task> applyFiltersDelegate { get; set; }
 
+        public ObservableCollection<SelectableItem<Country>> Countries { get; set; } = new ObservableCollection<SelectableItem<Country>>();
+        public ObservableCollection<SelectableItem<Genre>> Genres { get; set; } = new ObservableCollection<SelectableItem<Genre>>();
+        public ObservableCollection<OrderTypeFilter> OrderTypes { get; set; } = new ObservableCollection<OrderTypeFilter>();
+        public ObservableCollection<MovieTypeFilter> MovieTypes { get; set; } = new ObservableCollection<MovieTypeFilter>();
+
+        public ObservableCollection<int> SelectedCountries => new ObservableCollection<int>(Countries.Where(c => c.IsSelected).Select(c => c.Item.Id));
+        public ObservableCollection<int> SelectedGenres => new ObservableCollection<int>(Genres.Where(g => g.IsSelected).Select(g => g.Item.Id));
+        public OrderTypeFilter? SelectedOrder { get; set; }
+        public MovieTypeFilter? SelectedType { get; set; }
+
+        public double? RatingFrom { get; set; }
+        public double? RatingTo { get; set; }
+        public int? YearFrom { get; set; }
+        public int? YearTo { get; set; }
+        public string ImdbId { get; set; }
+        public string Keyword { get; set; }
+
+        private void LoadCountriesAndGenres()
+        {
+            var countries = _movieService.GetCountries();
+            var genres =  _movieService.GetGenres();
+
+            foreach (var country in countries)
+            {
+                Countries.Add(new SelectableItem<Country>(country));
+            }
+
+            foreach (var genre in genres)
+            {
+                Genres.Add(new SelectableItem<Genre>(genre));
+            }
+        }
+
+        private void PopulateEnums()
+        {
+            foreach (OrderTypeFilter orderType in Enum.GetValues(typeof(OrderTypeFilter)))
+            {
+                OrderTypes.Add(orderType);
+            }
+
+            foreach (MovieTypeFilter movieType in Enum.GetValues(typeof(MovieTypeFilter)))
+            {
+                MovieTypes.Add(movieType);
+            }
+        }
     }
-
 }

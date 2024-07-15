@@ -40,7 +40,7 @@ namespace KinopoiskDesktop.App
                     var kinopoiskApiSettings = configuration.GetSection("KinopoiskApi").Get<KinopoiskApiConfigurations>();
 
                     services.ConfigureLocalDatabase();
-
+                    // TODO: Rethink lifetimes
                     services.AddSingleton<IMovieService, MovieService>();
                     services.AddSingleton<IUserService, UserService>();
                     services.AddSingleton<IAuthenticationService, AuthenticationService>();

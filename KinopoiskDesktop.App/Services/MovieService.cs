@@ -18,15 +18,15 @@ namespace KinopoiskDesktop.App.Services
     {
         private readonly Integrations.KinopoiskUnofficialApi.IKinopoiskClient _kinopoiskApiClient;
         private readonly IMovieManager _movieManager;
-        private Dictionary<string, Country> countryDictionary = new Dictionary<string, Country>();
-        private Dictionary<string, Genre> genreDictionary = new Dictionary<string, Genre>();
+        private Dictionary<string, Country> _countryDictionary = new Dictionary<string, Country>();
+        private Dictionary<string, Genre> _genreDictionary = new Dictionary<string, Genre>();
 
         public MovieService(Integrations.KinopoiskUnofficialApi.IKinopoiskClient kinopoiskApiClient, IMovieManager movieManager)
         {
             _kinopoiskApiClient = kinopoiskApiClient;
             _movieManager = movieManager;
-            countryDictionary = _movieManager.GetCountries().ToDictionary(x => x.Name);
-            genreDictionary = _movieManager.GetGenres().ToDictionary(x => x.Name);
+            _countryDictionary = _movieManager.GetCountries().ToDictionary(x => x.Name);
+            _genreDictionary = _movieManager.GetGenres().ToDictionary(x => x.Name);
         }
 
         public async Task<IEnumerable<AppUserMovie>> GetMoviesByFilterAsync(MovieFilter? filter = null)
@@ -64,8 +64,8 @@ namespace KinopoiskDesktop.App.Services
                         NameRu = x.NameRu,
                         NameEn = x.NameEn,
                         NameOriginal = x.NameOriginal,
-                        Countries = x.Countries.Select(c=> new MovieCountry { Country = countryDictionary.GetValueOrDefault(c.Country1)}).ToList(),
-                        Genres = x.Genres.Select(c=> new MovieGenre { Genre = genreDictionary.GetValueOrDefault(c.Genre1)}).ToList(),
+                        Countries = x.Countries.Select(c=> new MovieCountry { Country = _countryDictionary.GetValueOrDefault(c.Country1)}).ToList(),
+                        Genres = x.Genres.Select(c=> new MovieGenre { Genre = _genreDictionary.GetValueOrDefault(c.Genre1)}).ToList(),
                         RatingKinopoisk = x.RatingKinopoisk,
                         RatingImdb = x.RatingImdb,
                         Year = x.Year as int?,
@@ -113,9 +113,9 @@ namespace KinopoiskDesktop.App.Services
         }
 
 
-        public async Task<IEnumerable<AppUserMovie>> GetFavoritesAsync()
+        public async Task<IEnumerable<AppUserMovie>> GetFavoritesByFilterAsync(MovieFilter? filter)
         {
-            return await _movieManager.GetFavoritesAsync();
+            return await _movieManager.GetUserMoviesByFilter(filter);
         }
 
         public async Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync()
@@ -146,6 +146,17 @@ namespace KinopoiskDesktop.App.Services
         public async Task RateMovieAsync(AppUserMovie movie)
         {
             await _movieManager.RateMovieAsync(movie);
+        }
+
+
+        public List<Country> GetCountries()
+        {
+            return _countryDictionary.Values.ToList();
+        }
+
+        public List<Genre> GetGenres()
+        {
+            return _genreDictionary.Values.ToList();
         }
     }
 }
