@@ -29,5 +29,9 @@
             <view:RegisterView/>
         </DataTemplate>
 
+        <DataTemplate DataType="{x:Type viewModel:FilterViewModel}">
+            <view:FilterView />
+        </DataTemplate>
+
     </Application.Resources>
 </Application>

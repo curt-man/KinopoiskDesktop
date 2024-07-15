@@ -72,8 +72,7 @@ namespace KinopoiskDesktop.App.ViewModels
 
         private double? ShowRatingDialog()
         {
-            // Implement the logic to show a dialog for rating the movie and return the rating
-            // This is just a placeholder implementation
+            
             return 8.5; // Example rating
         }
     }

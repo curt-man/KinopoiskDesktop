@@ -24,6 +24,8 @@ namespace KinopoiskDesktop.App.ViewModels
         private readonly INavigationService _navigationService;
         public ObservableCollection<AppUserMovie> Movies { get; set; }
 
+        private readonly FilterViewModel _filterViewModel;
+
         private AppUserMovie _selectedMovie;
         public AppUserMovie SelectedMovie
         {
@@ -48,14 +50,16 @@ namespace KinopoiskDesktop.App.ViewModels
             PopulateDesignViewModel();
         }
 
-        public HomeViewModel(IMovieService movieService, INavigationService navigationService) : this()
+        public HomeViewModel(IMovieService movieService, INavigationService navigationService, FilterViewModel filterViewModel) : this()
         {
             _movieService = movieService;
             _navigationService = navigationService;
             MovieSelectedCommand = new RelayCommand((movie)=>_navigationService.NavigateTo<MovieDetailsViewModel>(movie), _=>true);
+            _filterViewModel = filterViewModel;
+            _filterViewModel.applyFiltersDelegate = LoadMovies;
 
             SyncFromApi();
-            LoadMovies();
+            LoadMovies(filterViewModel);
 
         }
 
@@ -64,21 +68,20 @@ namespace KinopoiskDesktop.App.ViewModels
             await _movieService.SyncWithApiAsync();
         }
 
-        private async void LoadMovies()
+        private async Task LoadMovies(FilterViewModel filterViewModel)
         {
             var filter = new MovieFilter
             {
-                Countries = [1],
-                Genres = [1],
-                Order = OrderTypeFilter.YEAR,
-                Type = MovieTypeFilter.TV_SERIES,
-                RatingFrom = 4.7,
-                RatingTo = 5.7,
-                YearFrom = 2012,
-                YearTo = 2014,
-                ImdbId = null,
-                Keyword = null,
-                Page = 1,
+                Countries = filterViewModel.Countries,
+                Genres = filterViewModel.Genres,
+                Order = filterViewModel.Order,
+                Type = filterViewModel.Type,
+                RatingFrom = filterViewModel.RatingFrom,
+                RatingTo = filterViewModel.RatingTo,
+                YearFrom = filterViewModel.YearFrom,
+                YearTo = filterViewModel.YearTo,
+                ImdbId = filterViewModel.ImdbId,
+                Keyword = filterViewModel.Keyword,
                 PageSize = 20
             };
 

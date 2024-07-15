@@ -97,17 +97,19 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
                 if (filter.RatingFrom.HasValue)
                 {
                     filteredMoviesQuery = filteredMoviesQuery.Where(m =>
-                        (m.RatingKinopoisk == null || m.RatingKinopoisk >= filter.RatingFrom )||
-                        (m.RatingImdb == null || m.RatingImdb >= filter.RatingFrom )||
-                        (m.RatingFilmCritics == null || m.RatingFilmCritics >= filter.RatingTo));
+                        (m.RatingKinopoisk == null || m.RatingKinopoisk >= filter.RatingFrom )
+                        //||(m.RatingImdb == null || m.RatingImdb >= filter.RatingFrom )
+                        //||(m.RatingFilmCritics == null || m.RatingFilmCritics >= filter.RatingTo)
+                        );
                 }
 
                 if (filter.RatingTo.HasValue)
                 {
                     filteredMoviesQuery = filteredMoviesQuery.Where(m =>
-                        (m.RatingKinopoisk == null || m.RatingKinopoisk <= filter.RatingFrom) ||
-                        (m.RatingImdb == null || m.RatingImdb <= filter.RatingFrom) ||
-                        (m.RatingFilmCritics == null || m.RatingFilmCritics <= filter.RatingTo));
+                        (m.RatingKinopoisk == null || m.RatingKinopoisk <= filter.RatingFrom)
+                        //|| (m.RatingImdb == null || m.RatingImdb <= filter.RatingFrom)
+                        //|| (m.RatingFilmCritics == null || m.RatingFilmCritics <= filter.RatingTo)
+                        );
                 }
 
                 if (filter.YearFrom.HasValue)
@@ -130,8 +132,14 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
 
                 if (!string.IsNullOrWhiteSpace(filter.Keyword))
                 {
-                    filteredMoviesQuery = filteredMoviesQuery.Where(m => m.NameRu.Contains(filter.Keyword) || m.NameEn.Contains(filter.Keyword) || m.NameOriginal.Contains(filter.Keyword));
+                    var keyword = filter.Keyword.ToLowerInvariant();
+                    filteredMoviesQuery = filteredMoviesQuery.Where(m =>
+                        (m.NameRu != null && m.NameRu.ToLower().Contains(keyword)) ||
+                        (m.NameEn != null && m.NameEn.ToLower().Contains(keyword)) ||
+                        (m.NameOriginal != null && m.NameOriginal.ToLower().Contains(keyword))
+                    );
                 }
+
 
                 var filteredMovies = await filteredMoviesQuery.ToListAsync();
 
@@ -272,13 +280,13 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
                 {
                     existingMovie.UpdatedAt = DateTime.UtcNow;
                     existingMovie.SyncedAt = DateTime.UtcNow;
-                    existingMovie.SyncPeriod = TimeSpan.FromMinutes(3);
+                    existingMovie.SyncPeriod = TimeSpan.FromMinutes(30);
                     moviesToUpdate.Add(existingMovie);
                 }
                 else
                 {
                     apiMovie.SyncedAt = DateTime.UtcNow;
-                    apiMovie.SyncPeriod = TimeSpan.FromMinutes(3);
+                    apiMovie.SyncPeriod = TimeSpan.FromMinutes(30);
                     apiMovie.CreatedAt = DateTime.UtcNow;
                     moviesToInsert.Add(apiMovie);
                 }
