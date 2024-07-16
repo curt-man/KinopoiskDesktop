@@ -1,11 +1,6 @@
 ﻿using KinopoiskDesktop.App.Services.IService;
 using KinopoiskDesktop.Domain.IManagers;
 using KinopoiskDesktop.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.App.Services
 {

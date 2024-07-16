@@ -1,11 +1,6 @@
 ﻿using KinopoiskDesktop.App.Core;
 using KinopoiskDesktop.App.Services.IService;
 using KinopoiskDesktop.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace KinopoiskDesktop.App.ViewModels

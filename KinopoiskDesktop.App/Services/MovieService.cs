@@ -3,13 +3,6 @@ using KinopoiskDesktop.Domain.Enums;
 using KinopoiskDesktop.Domain.Managers;
 using KinopoiskDesktop.Domain.Models;
 using KinopoiskDesktop.Domain.SearchFilters;
-using KinopoiskDesktop;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 
 namespace KinopoiskDesktop.App.Services

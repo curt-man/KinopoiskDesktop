@@ -1,12 +1,10 @@
 ﻿using KinopoiskDesktop.App.Core;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.App.Services.IService
 {
+    /// <summary>
+    /// Serbice for navigation between views
+    /// </summary>
     public interface INavigationService 
     {
         BaseViewModel CurrentView { get; }

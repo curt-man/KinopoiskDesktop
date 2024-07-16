@@ -1,22 +1,11 @@
 ﻿using KinopoiskDesktop.App.Core;
 using KinopoiskDesktop.App.Helpers;
-using KinopoiskDesktop.App.Services;
 using KinopoiskDesktop.App.Services.IService;
-using KinopoiskDesktop.Domain.Enums;
 using KinopoiskDesktop.Domain.Models;
 using KinopoiskDesktop.Domain.SearchFilters;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using System.Windows.Navigation;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace KinopoiskDesktop.App.ViewModels
 {
@@ -103,6 +92,11 @@ namespace KinopoiskDesktop.App.ViewModels
             await _movieService.SyncWithApiAsync();
         }
 
+        /// <summary>
+        /// Load movies by filter if it's provided
+        /// </summary>
+        /// <param name="filterViewModel">Data from filter view model</param>
+        /// <returns></returns>
         private async Task LoadMovies(FilterViewModel filterViewModel)
         {
             var filter = new MovieFilter

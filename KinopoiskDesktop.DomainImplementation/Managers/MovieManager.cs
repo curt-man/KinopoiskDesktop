@@ -5,11 +5,6 @@ using KinopoiskDesktop.Domain.Managers;
 using KinopoiskDesktop.Domain.Models;
 using KinopoiskDesktop.Domain.SearchFilters;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.DomainImplementation.Managers
 {
@@ -24,6 +19,7 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             _authenticationManager = authenticationManager;
         }
 
+        // <inheritdoc/>
         public async Task<IEnumerable<AppUserMovie>> GetUserMoviesByFilter(MovieFilter filter)
         {
             try
@@ -161,6 +157,7 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             }
         }
 
+        // <inheritdoc/>
         public async Task<IEnumerable<AppUserMovie>> GetUserMoviesForApi(IEnumerable<Movie> apiMovies)
         {
             try
@@ -189,6 +186,7 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             
         }
 
+        // <inheritdoc/>
         public async Task SyncWithApiAsync<TEntity, TId>(IEnumerable<TEntity> apiEntities)
             where TEntity : BaseEntity<TId>, ISyncableEntity<TId>
         {
@@ -230,6 +228,7 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
         }
 
         // TODO: Use generic synchronization method instead
+        // <inheritdoc/>
         public async Task SyncMoviesWithApiAsync(IEnumerable<Movie> apiMovies)
         {
             var apiMovieIds = apiMovies.Select(m => m.KinopoiskId).ToList();
@@ -268,11 +267,13 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
 
         }
 
+        // <inheritdoc/>
         public List<Country> GetCountries()
         {
             return _context.Countries.ToList();
         }
 
+        // <inheritdoc/>
         public List<Genre> GetGenres()
         {
             return _context.Genres.ToList();
@@ -334,7 +335,11 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             await UpsertMovie(movie);
         }
 
-
+        /// <summary>
+        /// Inserts or updates movie in the database
+        /// </summary>
+        /// <param name="movie"></param>
+        /// <returns></returns>
         private async Task UpsertMovie(AppUserMovie movie)
         {
             if (_authenticationManager.CurrentUserId == null)

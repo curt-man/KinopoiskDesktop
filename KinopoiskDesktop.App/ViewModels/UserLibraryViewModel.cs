@@ -91,8 +91,15 @@ namespace KinopoiskDesktop.App.ViewModels
             await _movieService.SyncWithApiAsync();
         }
 
+
+        /// <summary>
+        /// Load movies by filter if it's provided
+        /// </summary>
+        /// <param name="filterViewModel">Data from filter view model</param>
+        /// <returns>List of current user's movies</returns>
         private async Task LoadMovies(FilterViewModel filterViewModel)
         {
+            // TODO: Add to filter watched and rated movies as well
             var filter = new MovieFilter
             {
                 Countries = filterViewModel.SelectedCountries,

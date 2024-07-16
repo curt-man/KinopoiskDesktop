@@ -2,10 +2,7 @@
 using KinopoiskDesktop.App.Services.IService;
 using KinopoiskDesktop.Domain.Models;
 using KinopoiskDesktop.Domain.SearchFilters;
-using System;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace KinopoiskDesktop.App.ViewModels
@@ -30,6 +27,7 @@ namespace KinopoiskDesktop.App.ViewModels
         public ObservableCollection<OrderTypeFilter> OrderTypes { get; set; } = new ObservableCollection<OrderTypeFilter>();
         public ObservableCollection<MovieTypeFilter> MovieTypes { get; set; } = new ObservableCollection<MovieTypeFilter>();
 
+        // Just noticed, that API temporarily doens't support multiple countries and genres
         public ObservableCollection<int> SelectedCountries => new ObservableCollection<int>(Countries.Where(c => c.IsSelected).Select(c => c.Item.Id));
         public ObservableCollection<int> SelectedGenres => new ObservableCollection<int>(Genres.Where(g => g.IsSelected).Select(g => g.Item.Id));
         public OrderTypeFilter? SelectedOrder { get; set; }

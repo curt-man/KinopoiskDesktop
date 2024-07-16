@@ -74,6 +74,10 @@ namespace KinopoiskDesktop.App.ViewModels
             return SelectedMovie != null && IsUserAuthenticated;
         }
 
+        /// <summary>
+        /// Toggles the selected movie's favorite status
+        /// </summary>
+        /// <param name="parameter"></param>
         private async void ToggleFavorite(object parameter)
         {
             SelectedMovie.IsFavorite = !SelectedMovie.IsFavorite;
@@ -89,6 +93,10 @@ namespace KinopoiskDesktop.App.ViewModels
             OnPropertyChanged(nameof(SelectedMovie));
         }
 
+        /// <summary>
+        /// Toggles the selected movie's watched status
+        /// </summary>
+        /// <param name="parameter"></param>
         private async void ToggleWatched(object parameter)
         {
             SelectedMovie.IsWatched = !SelectedMovie.IsWatched;
@@ -104,6 +112,10 @@ namespace KinopoiskDesktop.App.ViewModels
             OnPropertyChanged(nameof(SelectedMovie));
         }
 
+        /// <summary>
+        /// Rates the selected movie
+        /// </summary>
+        /// <param name="parameter"></param>
         private async void RateMovie(object parameter)
         {
             // TODO: Use commands instead of calling methods directly

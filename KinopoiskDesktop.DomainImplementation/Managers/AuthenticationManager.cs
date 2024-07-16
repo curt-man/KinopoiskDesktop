@@ -2,12 +2,6 @@
 using KinopoiskDesktop.Domain.IManagers;
 using KinopoiskDesktop.Domain.Models;
 using KinopoiskDesktop.DomainImplementation.Helpers;
-using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.DomainImplementation.Managers
 {
