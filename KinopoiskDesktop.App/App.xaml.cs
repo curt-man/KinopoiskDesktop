@@ -4,16 +4,11 @@ using KinopoiskDesktop.App.Services.IService;
 using KinopoiskDesktop.DataAccess;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Configuration;
-using System.Data;
 using System.Windows;
 using Refit;
-
 using KinopoiskDesktop.Integrations.KinopoiskUnofficialApi;
 using Microsoft.Extensions.Configuration;
 using KinopoiskDesktop.App.Configurations;
-using Microsoft.EntityFrameworkCore;
-using System.IO;
 using KinopoiskDesktop.App.Views;
 using KinopoiskDesktop.App.ViewModels;
 using KinopoiskDesktop.App.Core;
@@ -42,12 +37,10 @@ namespace KinopoiskDesktop.App
                     services.ConfigureLocalDatabase();
                     // TODO: Rethink lifetimes
                     services.AddSingleton<IMovieService, MovieService>();
-                    services.AddSingleton<IUserService, UserService>();
                     services.AddSingleton<IAuthenticationService, AuthenticationService>();
-                    services.AddSingleton<IAuthenticationManager, AuthenticationManager>();
 
                     services.AddSingleton<IMovieManager, MovieManager>();
-                    services.AddSingleton<IAppUserManager, AppUserManager>();
+                    services.AddSingleton<IAuthenticationManager, AuthenticationManager>();
 
                     services.AddRefitClient<IKinopoiskClient>().ConfigureHttpClient(c =>
                     {

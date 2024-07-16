@@ -1,8 +1,5 @@
 ﻿using KinopoiskDesktop.App.Core;
-using KinopoiskDesktop.App.Services;
 using KinopoiskDesktop.App.Services.IService;
-using KinopoiskDesktop.Domain.SearchFilters;
-using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.App.ViewModels
 {

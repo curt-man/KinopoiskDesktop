@@ -1,11 +1,13 @@
 ﻿using KinopoiskDesktop.App.Views;
-using System.Threading.Tasks;
-using System.Windows;
 
 namespace KinopoiskDesktop.App.Helpers
 {
     public class DialogHelper
     {
+        /// <summary>
+        /// Shows a dialog for rating a movie
+        /// </summary>
+        /// <returns></returns>
         public async Task<double?> ShowRatingDialogAsync()
         {
             var dialog = new RatingDialog();

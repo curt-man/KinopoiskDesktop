@@ -1,17 +1,14 @@
 ﻿using KinopoiskDesktop.Domain.Enums;
 using KinopoiskDesktop.Domain.Models;
-using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace KinopoiskDesktop.App.Helpers
 {
     public static class SeedDataHelper
     {
-        
+        /// <summary>
+        /// Initialize movies for design-time data context
+        /// </summary>
+        /// <returns></returns>
         public static List<AppUserMovie>? InitializeDesignTimeMovies()
         {
             List<AppUserMovie> seedMovies = null;
