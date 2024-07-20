@@ -19,6 +19,9 @@
     <Compile Update="Views\MovieDetailsView.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Update="Views\MovieListingView.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Update="Views\RatingDialog.xaml.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -49,6 +52,9 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\MovieDetailsView.xaml">
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Update="Views\MovieListingView.xaml">
       <SubType>Designer</SubType>
     </Page>
     <Page Update="Views\RatingDialog.xaml">

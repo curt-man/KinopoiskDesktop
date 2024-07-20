@@ -15,6 +15,7 @@ using KinopoiskDesktop.App.Core;
 using KinopoiskDesktop.Domain.Managers;
 using KinopoiskDesktop.DomainImplementation.Managers;
 using KinopoiskDesktop.Domain.IManagers;
+using System.Reflection;
 
 namespace KinopoiskDesktop.App
 {
@@ -35,12 +36,17 @@ namespace KinopoiskDesktop.App
                     var kinopoiskApiSettings = configuration.GetSection("KinopoiskApi").Get<KinopoiskApiConfigurations>();
 
                     services.ConfigureLocalDatabase();
-                    // TODO: Rethink lifetimes
-                    services.AddSingleton<IMovieService, MovieService>();
-                    services.AddSingleton<IAuthenticationService, AuthenticationService>();
 
-                    services.AddSingleton<IMovieManager, MovieManager>();
-                    services.AddSingleton<IAuthenticationManager, AuthenticationManager>();
+                    services.AddScoped<IMovieService, MovieService>();
+                    services.AddScoped<IAuthenticationService, AuthenticationService>();
+
+                    services.AddScoped<IMovieManager, MovieManager>();
+                    services.AddScoped<IAuthenticationManager, AuthenticationManager>();
+
+                    services.AddScoped<IViewModelFactory, ViewModelFactory>();
+                    services.AddSingleton<INavigationService, NavigationService>();
+
+                    services.AddScoped<IApplicationDbContext, ApplicationDbContext>();
 
                     services.AddRefitClient<IKinopoiskClient>().ConfigureHttpClient(c =>
                     {
@@ -48,28 +54,13 @@ namespace KinopoiskDesktop.App
                         c.DefaultRequestHeaders.Add("X-API-KEY", kinopoiskApiSettings.ApiKey);
                     });
 
-                    services.AddSingleton<MainView>();
-                    services.AddSingleton<HomeView>();
-                    services.AddSingleton<UserLibraryView>();
-                    services.AddSingleton<MovieDetailsView>();
-                    services.AddSingleton<SettingsView>();
-                    services.AddSingleton<LoginView>();
-                    services.AddSingleton<RegisterView>();
-                    services.AddSingleton<FilterView>();
+                    var types = Assembly.GetExecutingAssembly().GetTypes();
+                    var viewsAndViewModels = types.Where(x => x.Name.EndsWith("ViewModel") || x.Name.EndsWith("View"));
+                    foreach (var type in viewsAndViewModels)
+                    {
+                        services.AddSingleton(type);
+                    }
 
-                    services.AddSingleton<MainViewModel>();
-                    services.AddSingleton<HomeViewModel>();
-                    services.AddSingleton<UserLibraryViewModel>();
-                    services.AddSingleton<MovieDetailsViewModel>();
-                    services.AddSingleton<SettingsViewModel>();
-                    services.AddSingleton<LoginViewModel>();
-                    services.AddSingleton<RegisterViewModel>();
-                    services.AddSingleton<FilterViewModel>();
-
-
-                    services.AddSingleton<IViewModelFactory, ViewModelFactory>();
-                    services.AddSingleton<INavigationService, NavigationService>();
-                    services.AddSingleton<IApplicationDbContext, ApplicationDbContext>();
                 })
                 .Build();
         }
@@ -82,7 +73,7 @@ namespace KinopoiskDesktop.App
             navigationService.NavigateTo<HomeViewModel>();
             mainWindow.Show();
         }
-        
+
 
     }
 

@@ -13,13 +13,14 @@ namespace KinopoiskDesktop.App.Services
         private readonly IMovieManager _movieManager;
         private Dictionary<string, Country> _countryDictionary = new Dictionary<string, Country>();
         private Dictionary<string, Genre> _genreDictionary = new Dictionary<string, Genre>();
+        private bool IsSynced = false;
+
 
         public MovieService(Integrations.KinopoiskUnofficialApi.IKinopoiskClient kinopoiskApiClient, IMovieManager movieManager)
         {
             _kinopoiskApiClient = kinopoiskApiClient;
             _movieManager = movieManager;
-            _countryDictionary = _movieManager.GetCountries().ToDictionary(x => x.Name);
-            _genreDictionary = _movieManager.GetGenres().ToDictionary(x => x.Name);
+            var sync = SyncWithApiAsync();
         }
 
         public async Task<IEnumerable<AppUserMovie>> GetMoviesByFilterAsync(MovieFilter? filter = null)
@@ -81,6 +82,10 @@ namespace KinopoiskDesktop.App.Services
 
         public async Task SyncWithApiAsync()
         {
+            if(IsSynced)
+            {
+                return;
+            }
             try
             {
                 var response = await _kinopoiskApiClient.Filters();
@@ -98,6 +103,10 @@ namespace KinopoiskDesktop.App.Services
                 await _movieManager.SyncWithApiAsync<Country, int>(apiCountries);
                 await _movieManager.SyncWithApiAsync<Genre, int>(apiGenres);
 
+                _countryDictionary = _movieManager.GetCountries().ToDictionary(x => x.Name);
+                _genreDictionary = _movieManager.GetGenres().ToDictionary(x => x.Name);
+
+                IsSynced = true;
             }
             catch (Exception)
             {
@@ -116,25 +125,19 @@ namespace KinopoiskDesktop.App.Services
             return await _movieManager.GetWatchedMoviesAsync();
         }
 
-        public async Task AddToFavoritesAsync(AppUserMovie movie)
+        public async Task<bool> ToggleFavoriteAsync(AppUserMovie movie)
         {
-            await _movieManager.AddToFavoritesAsync(movie);   
+            movie.IsFavorite = !movie.IsFavorite;
+            return await _movieManager.ToggleFavoriteAsync(movie);
         }
 
-        public async Task RemoveFromFavoritesAsync(AppUserMovie movie)
+
+        public async Task<bool> ToggleWatchedAsync(AppUserMovie movie)
         {
-            await _movieManager.RemoveFromFavoritesAsync(movie);
+            movie.IsWatched = !movie.IsWatched;
+            return await _movieManager.ToggleWatchedAsync(movie);
         }
 
-        public async Task MarkAsWatchedAsync(AppUserMovie movie)
-        {
-            await _movieManager.MarkAsWatchedAsync(movie);
-        }
-
-        public async Task MarkAsUnwatchedAsync(AppUserMovie movie)
-        {
-            await _movieManager.MarkAsUnwatchedAsync(movie);
-        }
 
         public async Task RateMovieAsync(AppUserMovie movie)
         {

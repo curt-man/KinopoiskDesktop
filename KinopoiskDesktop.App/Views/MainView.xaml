@@ -12,6 +12,7 @@
         MinHeight="700"
         MinWidth="600"
         xmlns:vm="clr-namespace:KinopoiskDesktop.App.ViewModels"
+        Topmost="True"
         d:DataContext="{d:DesignInstance Type=vm:MainViewModel, IsDesignTimeCreatable=True}">
     <Grid>
         <Grid.ColumnDefinitions>

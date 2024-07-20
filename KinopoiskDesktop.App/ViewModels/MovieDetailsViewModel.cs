@@ -6,7 +6,7 @@ using System.Windows.Input;
 
 namespace KinopoiskDesktop.App.ViewModels
 {
-    public class MovieDetailsViewModel : BaseViewModel
+    public class MovieDetailsViewModel : ViewModelBase
     {
         private readonly IMovieService _movieService;
         private readonly INavigationService _navigationService;
@@ -23,7 +23,6 @@ namespace KinopoiskDesktop.App.ViewModels
                 OnPropertyChanged();
             }
         }
-
 
         public AppUserMovie SelectedMovie
         {
@@ -80,17 +79,11 @@ namespace KinopoiskDesktop.App.ViewModels
         /// <param name="parameter"></param>
         private async void ToggleFavorite(object parameter)
         {
-            SelectedMovie.IsFavorite = !SelectedMovie.IsFavorite;
-            // TODO: Not sure if any additional logic will be needed here, probably gonna refactor this and make something like ToggleFavorite
-            if (SelectedMovie.IsFavorite)
+            var isChanged = await _movieService.ToggleFavoriteAsync(SelectedMovie);
+            if (isChanged)
             {
-                await _movieService.AddToFavoritesAsync(SelectedMovie);
+                OnPropertyChanged(nameof(SelectedMovie));
             }
-            else
-            {
-                await _movieService.RemoveFromFavoritesAsync(SelectedMovie);
-            }
-            OnPropertyChanged(nameof(SelectedMovie));
         }
 
         /// <summary>
@@ -99,17 +92,11 @@ namespace KinopoiskDesktop.App.ViewModels
         /// <param name="parameter"></param>
         private async void ToggleWatched(object parameter)
         {
-            SelectedMovie.IsWatched = !SelectedMovie.IsWatched;
-            // TODO: Not sure if any additional logic will be needed here, probably gonna refactor this and make something like ToggleWatchedAsync
-            if (SelectedMovie.IsWatched)
+            var isChanged = await _movieService.ToggleWatchedAsync(SelectedMovie);
+            if(isChanged)
             {
-                await _movieService.MarkAsWatchedAsync(SelectedMovie);
+                OnPropertyChanged(nameof(SelectedMovie));
             }
-            else
-            {
-                await _movieService.MarkAsUnwatchedAsync(SelectedMovie);
-            }
-            OnPropertyChanged(nameof(SelectedMovie));
         }
 
         /// <summary>

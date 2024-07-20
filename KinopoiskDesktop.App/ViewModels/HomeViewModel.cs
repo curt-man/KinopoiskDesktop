@@ -9,13 +9,13 @@ using System.Windows.Input;
 
 namespace KinopoiskDesktop.App.ViewModels
 {
-    public class HomeViewModel : BaseViewModel
+    public class HomeViewModel : ViewModelBase
     {
         private readonly IMovieService _movieService;
         private readonly INavigationService _navigationService;
         private IAuthenticationService _authenticationService;
-        private bool _isUserAuthenticated;
 
+        private bool _isUserAuthenticated;
         public bool IsUserAuthenticated
         {
             get => _isUserAuthenticated;
@@ -26,70 +26,68 @@ namespace KinopoiskDesktop.App.ViewModels
             }
         }
 
-        public ObservableCollection<AppUserMovie> Movies { get; set; }
-        private readonly FilterViewModel _filterViewModel;
-
-        private AppUserMovie _selectedMovie;
-        public AppUserMovie SelectedMovie
+        private MovieListingViewModel _movieListingViewModel;
+        public MovieListingViewModel MovieListingViewModel
         {
-            get => _selectedMovie;
+            get { return _movieListingViewModel; }
             set
             {
-                _selectedMovie = value;
+                _movieListingViewModel = value;
                 OnPropertyChanged();
-                if(value != null)
-                {
-                    MovieSelectedCommand.Execute(value);
-                }
             }
         }
 
-        public ICommand MovieSelectedCommand { get; }
+        private readonly FilterViewModel _filterViewModel;
 
         public HomeViewModel()
         {
-            Movies = new ObservableCollection<AppUserMovie>();
             if (DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject()))
             {
-                foreach (var movie in SeedDataHelper.InitializeDesignTimeMovies())
-                {
-                    Movies.Add(movie);
-                }
+                _movieListingViewModel = new MovieListingViewModel();
             }
         }
 
-        public HomeViewModel(IMovieService movieService, INavigationService navigationService, FilterViewModel filterViewModel, IAuthenticationService authenticationService) : this ()
+        public HomeViewModel(
+            IMovieService movieService,
+            INavigationService navigationService,
+            IAuthenticationService authenticationService,
+            FilterViewModel filterViewModel,
+            MovieListingViewModel movieListingViewModel
+            ) : this ()
         {
             _movieService = movieService;
             _navigationService = navigationService;
             _authenticationService = authenticationService;
 
-            MovieSelectedCommand = new RelayCommand((movie) => _navigationService.NavigateTo<MovieDetailsViewModel>(movie), _ => true);
+            _movieListingViewModel = movieListingViewModel;
+            _movieListingViewModel.MovieSelectedCommand = new RelayCommand((movie) => _navigationService.NavigateTo<MovieDetailsViewModel>(movie), _ => true);
 
             _filterViewModel = filterViewModel;
             _filterViewModel.applyFiltersDelegate = LoadMovies;
 
-            SyncFromApi();
-            LoadMovies(filterViewModel);
-
             IsUserAuthenticated = _authenticationService.CurrentUser != null;
             _authenticationService.UserLoggedIn += OnUserLoggedIn;
             _authenticationService.UserLoggedOut += OnUserLoggedOut;
+
+            RefreshView();
+
         }
 
         private void OnUserLoggedIn(object sender, EventArgs e)
         {
             IsUserAuthenticated = true;
+            _movieListingViewModel.IsUserAuthenticated = true;
         }
 
         private void OnUserLoggedOut(object sender, EventArgs e)
         {
             IsUserAuthenticated = false;
+            _movieListingViewModel.IsUserAuthenticated = false;
         }
 
-        private async void SyncFromApi()
+        private async void RefreshView()
         {
-            await _movieService.SyncWithApiAsync();
+            await LoadMovies(_filterViewModel);
         }
 
         /// <summary>
@@ -115,10 +113,10 @@ namespace KinopoiskDesktop.App.ViewModels
             };
 
             var movies = await _movieService.GetMoviesByFilterAsync(filter);
-            Movies.Clear();
+            _movieListingViewModel.Movies.Clear();
             foreach (var movie in movies)
             {
-                Movies.Add(movie);
+                _movieListingViewModel.Movies.Add(movie);
             }
         }
 
