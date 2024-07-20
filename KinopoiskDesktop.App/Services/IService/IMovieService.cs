@@ -15,12 +15,10 @@ namespace KinopoiskDesktop.App.Services.IService
         /// <returns></returns>
         Task<IEnumerable<AppUserMovie>> GetMoviesByFilterAsync(MovieFilter? filter = null);
 
-        Task AddToFavoritesAsync(AppUserMovie movie);
-        Task RemoveFromFavoritesAsync(AppUserMovie movie);
+        Task<bool> ToggleFavoriteAsync(AppUserMovie movie);
         Task<IEnumerable<AppUserMovie>> GetFavoritesByFilterAsync(MovieFilter? filter = null);
 
-        Task MarkAsWatchedAsync(AppUserMovie movie);
-        Task MarkAsUnwatchedAsync(AppUserMovie movie);
+        Task<bool> ToggleWatchedAsync(AppUserMovie movie);
         Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync();
 
         Task RateMovieAsync(AppUserMovie movie);

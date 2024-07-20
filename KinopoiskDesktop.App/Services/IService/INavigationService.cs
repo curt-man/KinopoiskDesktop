@@ -7,9 +7,9 @@ namespace KinopoiskDesktop.App.Services.IService
     /// </summary>
     public interface INavigationService 
     {
-        BaseViewModel CurrentView { get; }
-        void NavigateTo<T>() where T : BaseViewModel;
-        void NavigateTo<T>(object parameter) where T : BaseViewModel;
-        void NavigateTo(BaseViewModel viewModel);
+        ViewModelBase CurrentView { get; }
+        void NavigateTo<T>() where T : ViewModelBase;
+        void NavigateTo<T>(object parameter) where T : ViewModelBase;
+        void NavigateTo(ViewModelBase viewModel);
     }
 }

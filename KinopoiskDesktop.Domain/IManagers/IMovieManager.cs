@@ -19,12 +19,10 @@ namespace KinopoiskDesktop.Domain.Managers
         /// <returns></returns>
         Task<IEnumerable<AppUserMovie>> GetUserMoviesByFilter(MovieFilter filter);
 
-        Task AddToFavoritesAsync(AppUserMovie movie);
-        Task RemoveFromFavoritesAsync(AppUserMovie movie);
+        Task<bool> ToggleFavoriteAsync(AppUserMovie movie);
         Task<IEnumerable<AppUserMovie>> GetFavoritesAsync();
 
-        Task MarkAsWatchedAsync(AppUserMovie movie);
-        Task MarkAsUnwatchedAsync(AppUserMovie movie);
+        Task<bool> ToggleWatchedAsync(AppUserMovie movie);
         Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync();
 
         Task RateMovieAsync(AppUserMovie movie);
@@ -43,7 +41,7 @@ namespace KinopoiskDesktop.Domain.Managers
         /// <typeparam name="TId"></typeparam>
         /// <param name="apiEntity">List of API entities</param>
         /// <returns></returns>
-        Task SyncWithApiAsync<TEntity, TId>(IEnumerable<TEntity> apiEntity) where TEntity : BaseEntity<TId>, ISyncableEntity<TId>;
+        Task SyncWithApiAsync<TEntity, TId>(IEnumerable<TEntity> apiEntity) where TEntity : EntityBase<TId>, ISyncableEntity<TId>;
 
         /// <summary>
         /// Get all countries

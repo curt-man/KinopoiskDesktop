@@ -7,7 +7,7 @@ using System.Windows.Input;
 
 namespace KinopoiskDesktop.App.ViewModels
 {
-    public class FilterViewModel : BaseViewModel
+    public class FilterViewModel : ViewModelBase
     {
         private readonly IMovieService _movieService;
 

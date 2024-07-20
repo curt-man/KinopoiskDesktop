@@ -3,7 +3,7 @@ using KinopoiskDesktop.App.Services.IService;
 
 namespace KinopoiskDesktop.App.ViewModels
 {
-    public class MainViewModel : BaseViewModel
+    public class MainViewModel : ViewModelBase
     {
         private INavigationService _navigationService;
         public FilterViewModel FilterViewModel { get; }

@@ -1,6 +1,6 @@
 ﻿namespace KinopoiskDesktop.App.Core
 {
-    public class SelectableItem<T> : BaseViewModel
+    public class SelectableItem<T> : ViewModelBase
     {
         private bool _isSelected;
 

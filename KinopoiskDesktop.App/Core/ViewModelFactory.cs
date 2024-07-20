@@ -12,12 +12,12 @@ namespace KinopoiskDesktop.App.Core
             _serviceProvider = serviceProvider;
         }
 
-        public TViewModel CreateViewModel<TViewModel>() where TViewModel : BaseViewModel
+        public TViewModel CreateViewModel<TViewModel>() where TViewModel : ViewModelBase
         {
             return ActivatorUtilities.CreateInstance<TViewModel>(_serviceProvider);
         }
 
-        public TViewModel CreateViewModel<TViewModel>(object? parameter) where TViewModel : BaseViewModel
+        public TViewModel CreateViewModel<TViewModel>(object? parameter) where TViewModel : ViewModelBase
         {
             return ActivatorUtilities.CreateInstance<TViewModel>(_serviceProvider, parameter);
         }

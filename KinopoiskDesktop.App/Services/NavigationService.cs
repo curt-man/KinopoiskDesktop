@@ -5,10 +5,10 @@ namespace KinopoiskDesktop.App.Services
 {
     public class NavigationService : ObservableObject, INavigationService
     {
-        private BaseViewModel? currentView;
+        private ViewModelBase? currentView;
         private readonly IViewModelFactory viewModelFactory;
 
-        public BaseViewModel CurrentView
+        public ViewModelBase CurrentView
         {
             get => currentView!;
             private set
@@ -22,19 +22,19 @@ namespace KinopoiskDesktop.App.Services
 
         public NavigationService(IViewModelFactory viewModelFactory) => this.viewModelFactory = viewModelFactory;
 
-        public void NavigateTo<TViewModel>() where TViewModel : BaseViewModel
+        public void NavigateTo<TViewModel>() where TViewModel : ViewModelBase
         {
-            BaseViewModel ViewModel = viewModelFactory.CreateViewModel<TViewModel>();
+            ViewModelBase ViewModel = viewModelFactory.CreateViewModel<TViewModel>();
             CurrentView = ViewModel;
         }
 
-        public void NavigateTo<TViewModel>(object parameter) where TViewModel : BaseViewModel
+        public void NavigateTo<TViewModel>(object parameter) where TViewModel : ViewModelBase
         {
-            BaseViewModel ViewModel = viewModelFactory.CreateViewModel<TViewModel>(parameter);
+            ViewModelBase ViewModel = viewModelFactory.CreateViewModel<TViewModel>(parameter);
             CurrentView = ViewModel;
         }
 
-        public void NavigateTo(BaseViewModel viewModel)
+        public void NavigateTo(ViewModelBase viewModel)
         {
             CurrentView = viewModel;
         }

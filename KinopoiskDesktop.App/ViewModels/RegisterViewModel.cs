@@ -4,7 +4,7 @@ using System.Windows.Input;
 
 namespace KinopoiskDesktop.App.ViewModels
 {
-    public class RegisterViewModel : BaseViewModel
+    public class RegisterViewModel : ViewModelBase
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly INavigationService _navigationService;

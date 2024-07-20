@@ -6,7 +6,7 @@ namespace KinopoiskDesktop.Domain.Models
     /// <summary>
     /// Represents a movie entity with various attributes and relationships.
     /// </summary>
-    public class Movie : BaseEntity<int>, ISyncableEntity<int>
+    public class Movie : EntityBase<int>, ISyncableEntity<int>
     {
         /// <summary>
         /// The Kinopoisk ID of the movie.

@@ -6,7 +6,7 @@ namespace KinopoiskDesktop.Domain.Models
     /// <summary>
     /// Represents a genre entity with attributes and relationships.
     /// </summary>
-    public class Genre : BaseEntity<int>, ISyncableEntity<int>
+    public class Genre : EntityBase<int>, ISyncableEntity<int>
     {
         /// <summary>
         /// The ID of the genre.

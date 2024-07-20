@@ -6,7 +6,7 @@ namespace KinopoiskDesktop.Domain.Models
     /// <summary>
     /// Represents a country entity with attributes and relationships.
     /// </summary>
-    public class Country : BaseEntity<int>, ISyncableEntity<int>
+    public class Country : EntityBase<int>, ISyncableEntity<int>
     {
         /// <summary>
         /// The ID of the country.

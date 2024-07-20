@@ -4,7 +4,7 @@
     /// <summary>
     /// Represents an application user.
     /// </summary>
-    public class AppUser : BaseEntity<Guid>
+    public class AppUser : EntityBase<Guid>
     {
         /// <summary>
         /// The first name of the user.
