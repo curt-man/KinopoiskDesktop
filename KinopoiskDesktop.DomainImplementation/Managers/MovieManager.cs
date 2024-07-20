@@ -29,18 +29,22 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
                 if (filter.IsFavorite != null || filter.IsFavorite != false)
                 {
                     filteredMoviesQuery = filteredMoviesQuery.Include(x => x.MovieAppUsers.Where(m => m.IsFavorite))
-                        .Where(x=>x.MovieAppUsers != null && x.MovieAppUsers.Count != 0);
+                        .Where(x => x.MovieAppUsers != null && x.MovieAppUsers.Count != 0);
                 }
 
+                if (filter.ForCurrentUser != null || filter.ForCurrentUser != false)
+                {
+                    filteredMoviesQuery = filteredMoviesQuery.Where(x => _authenticationManager.CurrentUserId != null && x.MovieAppUsers.Any(m=>m.AppUserId==_authenticationManager.CurrentUserId));
+                }
 
                 if (filter.Countries != null && filter.Countries.Any())
                 {
-                    filteredMoviesQuery = filteredMoviesQuery.Include(x=>x.Countries).Where(m => m.Countries.Any(c => filter.Countries.Contains(c.CountryId)));
+                    filteredMoviesQuery = filteredMoviesQuery.Include(x => x.Countries).Where(m => m.Countries.Any(c => filter.Countries.Contains(c.CountryId)));
                 }
 
                 if (filter.Genres != null && filter.Genres.Any())
                 {
-                    filteredMoviesQuery = filteredMoviesQuery.Include(x=>x.Genres).Where(m => m.Genres.Any(g => filter.Genres.Contains(g.GenreId)));
+                    filteredMoviesQuery = filteredMoviesQuery.Include(x => x.Genres).Where(m => m.Genres.Any(g => filter.Genres.Contains(g.GenreId)));
                 }
 
                 if (filter.Order.HasValue)
@@ -84,7 +88,7 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
                 if (filter.RatingFrom.HasValue)
                 {
                     filteredMoviesQuery = filteredMoviesQuery.Where(m =>
-                        (m.RatingKinopoisk == null || m.RatingKinopoisk >= filter.RatingFrom )
+                        (m.RatingKinopoisk == null || m.RatingKinopoisk >= filter.RatingFrom)
                         //||(m.RatingImdb == null || m.RatingImdb >= filter.RatingFrom )
                         //||(m.RatingFilmCritics == null || m.RatingFilmCritics >= filter.RatingTo)
                         );
@@ -143,10 +147,6 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
                 }).ToList();
 
 
-                if (filter.ForCurrentUser != null || filter.ForCurrentUser != false)
-                {
-                    userMovies = userMovies.Where(x => _authenticationManager.CurrentUserId != null && x.AppUser?.Id == _authenticationManager.CurrentUserId).ToList();
-                }
 
                 return userMovies;
             }
@@ -183,12 +183,12 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             {
                 return new List<AppUserMovie>();
             }
-            
+
         }
 
         // <inheritdoc/>
         public async Task SyncWithApiAsync<TEntity, TId>(IEnumerable<TEntity> apiEntities)
-            where TEntity : BaseEntity<TId>, ISyncableEntity<TId>
+            where TEntity : EntityBase<TId>, ISyncableEntity<TId>
         {
             var apiEntitiesIds = apiEntities.Select(e => e.SyncProperty).ToList();
 
@@ -279,15 +279,9 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             return _context.Genres.ToList();
         }
 
-
-        public async Task AddToFavoritesAsync(AppUserMovie movie)
+        public async Task<bool> ToggleFavoriteAsync(AppUserMovie movie)
         {
-            await UpsertMovie(movie);
-        }
-
-        public async Task RemoveFromFavoritesAsync(AppUserMovie movie)
-        {
-            await UpsertMovie(movie);       
+            return await UpsertMovie(movie);
         }
 
         public async Task<IEnumerable<AppUserMovie>> GetFavoritesAsync()
@@ -304,17 +298,10 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
             return userMovies;
         }
 
-        public async Task MarkAsWatchedAsync(AppUserMovie movie)
+        public async Task<bool> ToggleWatchedAsync(AppUserMovie movie)
         {
-            await UpsertMovie(movie);
+            return await UpsertMovie(movie);
         }
-
-
-        public async Task MarkAsUnwatchedAsync(AppUserMovie movie)
-        {
-            await UpsertMovie(movie);
-        }
-
 
         public async Task<IEnumerable<AppUserMovie>> GetWatchedMoviesAsync()
         {
@@ -340,24 +327,42 @@ namespace KinopoiskDesktop.DomainImplementation.Managers
         /// </summary>
         /// <param name="movie"></param>
         /// <returns></returns>
-        private async Task UpsertMovie(AppUserMovie movie)
+        private async Task<bool> UpsertMovie(AppUserMovie movie)
         {
-            if (_authenticationManager.CurrentUserId == null)
+            try
             {
-                return;
+                if (_authenticationManager.CurrentUserId == null)
+                {
+                    return false;
+                }
+
+                var currentUserId = _authenticationManager.CurrentUserId.Value;
+
+                // Check if the entity already exists in the context
+                var appUserMovie = await _context.AppUsersMovies
+                                                 .FirstOrDefaultAsync(x => x.MovieId == movie.Movie.Id && x.AppUserId == currentUserId);
+
+                if (appUserMovie == null)
+                {
+                    movie.AppUserId = currentUserId;
+                    await _context.AppUsersMovies.AddAsync(movie);
+                }
+                else
+                {
+                    appUserMovie.IsFavorite = movie.IsFavorite;
+                    appUserMovie.IsWatched = movie.IsWatched;
+                    appUserMovie.Rating = movie.Rating;
+                    _context.AppUsersMovies.Update(appUserMovie);
+                }
+
+                var numberOfChanges = await _context.DbContext.SaveChangesAsync();
+                return numberOfChanges > 0;
             }
 
-            var appUserMovie = await _context.AppUsersMovies.Include(x=>x.AppUser).FirstOrDefaultAsync(x => x.MovieId == movie.MovieId && x.AppUserId == _authenticationManager.CurrentUserId);
-            if (appUserMovie == null)
+            catch (Exception ex)
             {
-                movie.AppUserId = _authenticationManager.CurrentUserId.Value;
-                await _context.AppUsersMovies.AddAsync(movie);
+                return false;
             }
-            else
-            {
-                _context.AppUsersMovies.Update(movie);
-            }
-            await _context.DbContext.SaveChangesAsync();
         }
 
     }
